@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#2C2C2C">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>WeddingClickz - Luxury Wedding Photography & Films</title>
     <meta name="description" content="Luxury wedding photography and cinematography crafted for couples who demand the best. Premium storytelling, cinematic artistry, and bespoke service.">
     <meta name="keywords" content="luxury wedding photography, wedding films, cinematography, premium wedding photographer, destination wedding">
-    <link rel="icon" type="image/x-icon" href="/book/favicon.ico">
-    <link rel="apple-touch-icon" href="/book/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
     <!-- Fonts matching frontend-user -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -298,6 +301,21 @@
             font-style: italic;
             display: block;
             margin-top: 0.25em;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: rgba(201, 168, 124, 0.15);
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
         }
 
         .hero-buttons {
@@ -1405,6 +1423,7 @@
                 align-items: center;
                 justify-content: center;
                 transition: right 0.4s ease;
+                z-index: 1000;
             }
 
             nav.active {
@@ -1419,6 +1438,7 @@
 
             nav a {
                 font-size: 1.25rem;
+                padding: 0.75rem 1rem;
             }
 
             .mobile-menu-toggle {
@@ -1433,6 +1453,11 @@
             .about-image-badge {
                 right: 1rem;
                 bottom: -1.5rem;
+                padding: 1.5rem;
+            }
+
+            .about-image-badge .number {
+                font-size: 2.5rem;
             }
 
             .contact-grid {
@@ -1456,50 +1481,159 @@
             .gallery-item {
                 height: 300px;
             }
-        }
-
-        @media (max-width: 768px) {
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
 
             .services-grid {
                 grid-template-columns: 1fr;
             }
 
-            .why-grid {
-                grid-template-columns: 1fr;
+            .films-section {
+                padding: 5rem 1.5rem;
             }
 
-            .about-stats {
+            .play-button {
+                width: 80px;
+                height: 80px;
+            }
+
+            .play-button svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 1.25rem;
+            }
+
+            .hero {
+                min-height: 100svh;
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+                padding-bottom: 6rem;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-badge {
+                font-size: 0.65rem;
+                padding: 0.5rem 1rem;
+                letter-spacing: 0.15em;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 1rem 2rem;
+                font-size: 0.8rem;
+                min-height: 52px;
+            }
+
+            .scroll-indicator {
+                bottom: 1.5rem;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .section-label {
+                font-size: 0.65rem;
+            }
+
+            .why-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
+            .why-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .why-card h3 {
+                font-size: 1.25rem;
+            }
+
+            .why-card p {
+                font-size: 0.9rem;
+            }
+
+            .why-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .why-icon svg {
+                width: 26px;
+                height: 26px;
+            }
+
+            .service-card {
+                border-radius: 16px;
+            }
+
+            .service-image {
+                height: 220px;
+            }
+
+            .service-content {
+                padding: 1.5rem;
+            }
+
+            .service-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.75rem;
+            }
+
+            .stat-label {
+                font-size: 0.65rem;
+            }
+
             .form-row {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-bottom: 1rem;
             }
 
             .form-group.full-width {
                 grid-column: span 1;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 0.875rem 1rem;
+                font-size: 16px; /* Prevents iOS zoom */
             }
 
             .footer-grid {
@@ -1520,11 +1654,100 @@
             }
 
             .contact-form {
-                padding: 2rem;
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+
+            .contact-form h3 {
+                font-size: 1.5rem;
             }
 
             .testimonial-quote {
-                font-size: 1.25rem;
+                font-size: 1.15rem;
+                padding: 0 0.5rem;
+            }
+
+            .testimonial-nav {
+                margin-top: 2rem;
+            }
+
+            .testimonial-nav button {
+                width: 44px;
+                height: 44px;
+            }
+
+            .author-image {
+                width: 60px;
+                height: 60px;
+            }
+
+            .cta-section {
+                padding: 5rem 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .gallery-item {
+                height: 250px;
+                border-radius: 10px;
+            }
+
+            .gallery-overlay {
+                padding: 1.5rem;
+                transform: translateY(0);
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            }
+
+            .gallery-overlay h4 {
+                font-size: 1.1rem;
+            }
+
+            .contact-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .contact-item-icon {
+                width: 44px;
+                height: 44px;
+            }
+
+            .contact-item-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .contact-social a {
+                width: 44px;
+                height: 44px;
+            }
+
+            .film-showcase {
+                border-radius: 12px;
+            }
+
+            .films-section {
+                padding: 4rem 1.25rem;
+            }
+
+            .play-button {
+                width: 70px;
+                height: 70px;
+            }
+
+            .play-button svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .film-play-overlay span {
+                font-size: 0.75rem;
             }
         }
 
@@ -1533,12 +1756,78 @@
                 padding: 0 1rem;
             }
 
+            header {
+                padding: 1rem 0;
+            }
+
+            header.scrolled {
+                padding: 0.5rem 0;
+            }
+
             .logo h1 {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
             }
 
             .logo-img {
-                height: 40px;
+                height: 36px;
+            }
+
+            .hero h1 {
+                font-size: 1.85rem;
+            }
+
+            .hero h1 em {
+                font-size: 0.9em;
+            }
+
+            .hero-badge {
+                font-size: 0.6rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .why-card {
+                padding: 1.75rem 1.25rem;
+            }
+
+            .service-image {
+                height: 200px;
+            }
+
+            .service-content {
+                padding: 1.25rem;
+            }
+
+            .service-content h3 {
+                font-size: 1.35rem;
+            }
+
+            .service-content p {
+                font-size: 0.9rem;
+            }
+
+            .service-features li {
+                font-size: 0.85rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.6rem;
             }
 
             .newsletter-form {
@@ -1548,6 +1837,98 @@
             .newsletter-form button {
                 width: 100%;
                 padding: 1rem;
+            }
+
+            .contact-form {
+                padding: 1.25rem;
+            }
+
+            .gallery-item {
+                height: 220px;
+            }
+
+            .testimonial-quote {
+                font-size: 1rem;
+            }
+
+            .testimonials-section::before {
+                font-size: 10rem;
+            }
+
+            .cta-section {
+                padding: 4rem 1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .lightbox-close {
+                top: 1rem;
+                right: 1rem;
+                width: 44px;
+                height: 44px;
+            }
+
+            footer {
+                padding: 3rem 1rem 1.5rem;
+            }
+
+            .footer-brand h3 {
+                font-size: 1.5rem;
+            }
+
+            .footer-brand p {
+                font-size: 0.9rem;
+            }
+
+            .footer-social a {
+                width: 38px;
+                height: 38px;
+            }
+
+            .preloader-logo {
+                font-size: 2rem;
+            }
+
+            .preloader-bar {
+                width: 150px;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .gallery-overlay {
+                transform: translateY(0);
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+            }
+
+            .btn:active {
+                transform: scale(0.98);
+            }
+
+            .why-card:active {
+                transform: scale(0.98);
+            }
+
+            .service-card:active {
+                transform: scale(0.99);
+            }
+        }
+
+        /* Safe area for notched devices */
+        @supports (padding: max(0px)) {
+            .hero {
+                padding-top: max(0px, env(safe-area-inset-top));
+            }
+
+            header {
+                padding-left: max(1rem, env(safe-area-inset-left));
+                padding-right: max(1rem, env(safe-area-inset-right));
+            }
+
+            footer {
+                padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
             }
         }
 
@@ -1627,7 +2008,7 @@
     <header id="header">
         <div class="header-container">
             <a href="#" class="logo">
-                <img src="/book/logo.png" alt="WeddingClickz" class="logo-img">
+                <img src="logo.png" alt="WeddingClickz" class="logo-img">
                 <h1>Wedding<span>Clickz</span></h1>
             </a>
             
@@ -1638,7 +2019,7 @@
                     <li><a href="#films">Films</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="/book" class="nav-cta">Book Now</a></li>
+                    <li><a href="https://weddingclickzquotation.com/" class="nav-cta">Get Quote</a></li>
                 </ul>
             </nav>
 
@@ -1660,10 +2041,11 @@
         <div class="hero-overlay"></div>
         
         <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <span class="hero-badge">✦ Premium Wedding Photography ✦</span>
             <h1>Capturing Love <em>Crafting Timeless Memories</em></h1>
             <div class="hero-buttons">
                 <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
-                <a href="/book" class="btn btn-secondary">Book Now</a>
+                <a href="https://weddingclickzquotation.com/" class="btn btn-secondary">Get Quote</a>
             </div>
         </div>
 
@@ -2022,7 +2404,7 @@
             <h2>Let's Create Something <em>Beautiful</em> Together</h2>
             <p>Your love story deserves to be captured with artistry and care. Let's discuss how we can make your wedding memories timeless.</p>
             <div class="hero-buttons">
-                <a href="/book" class="btn btn-primary">Book Now</a>
+                <a href="https://weddingclickzquotation.com/" class="btn btn-primary">Get Quote</a>
                 <a href="#portfolio" class="btn btn-secondary">View Our Work</a>
             </div>
         </div>
