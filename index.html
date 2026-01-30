@@ -121,6 +121,15 @@
             background: transparent;
             padding: 1.5rem 0;
             transition: all 0.4s ease;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        header.visible {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
         }
 
         header.scrolled {
@@ -171,7 +180,7 @@
             text-decoration: none;
             color: var(--white);
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 260;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             position: relative;
@@ -245,14 +254,105 @@
             transform: rotate(-45deg) translate(5px, -5px);
         }
 
+        /* Hero Logo */
+        .hero-logo {
+            position: absolute;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            text-decoration: none;
+            z-index: 10;
+        }
+
+        .hero-logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        .hero-logo h1 {
+            font-size: 1.75rem;
+            color: var(--white);
+            letter-spacing: 0.08em;
+            font-weight: 400;
+        }
+
+        .hero-logo h1 span {
+            color: var(--gold);
+        }
+
+        .hero-tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: var(--gold-light);
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            margin-top: 0.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-logo {
+                top: 1.5rem;
+            }
+
+            .hero-logo img {
+                height: 55px;
+            }
+
+            .hero-logo h1 {
+                font-size: 1.4rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.6rem;
+                letter-spacing: 0.25em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-logo {
+                top: 1.25rem;
+            }
+
+            .hero-logo img {
+                height: 45px;
+            }
+
+            .hero-logo h1 {
+                font-size: 1.2rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.55rem;
+                letter-spacing: 0.2em;
+            }
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
+            min-height: 100dvh;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            background: linear-gradient(135deg, var(--charcoal) 0%, #1a1a1a 50%, var(--charcoal-light) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A87C' fill-opacity='0.04'%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3Ccircle cx='20' cy='20' r='1.5'/%3E%3Ccircle cx='60' cy='20' r='1.5'/%3E%3Ccircle cx='20' cy='60' r='1.5'/%3E%3Ccircle cx='60' cy='60' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: -3;
         }
 
         .hero-video-bg {
@@ -280,12 +380,173 @@
             z-index: -1;
         }
 
-        .hero-content {
-            text-align: center;
-            z-index: 1;
-            padding: 2rem;
-            padding-bottom: 8rem;
-            max-width: 900px;
+        /* Film Roll Slider */
+        .film-roll-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 5;
+            overflow: hidden;
+            padding-bottom: 3rem;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .film-roll {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            animation: filmScroll 30s linear infinite;
+        }
+
+        .film-roll:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes filmScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .film-frame {
+            position: relative;
+            flex-shrink: 0;
+            width: 340px;
+            height: 420px;
+            background: var(--charcoal);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .film-frame::before,
+        .film-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 8px,
+                rgba(201, 168, 124, 0.3) 8px,
+                rgba(201, 168, 124, 0.3) 16px
+            );
+            z-index: 2;
+        }
+
+        .film-frame::before {
+            left: 0;
+        }
+
+        .film-frame::after {
+            right: 0;
+        }
+
+        .film-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .film-frame:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 20px 60px rgba(201, 168, 124, 0.3);
+        }
+
+        .film-frame:hover img {
+            transform: scale(1.1);
+        }
+
+        .film-frame-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .film-frame:hover .film-frame-overlay {
+            opacity: 1;
+        }
+
+        .film-frame-overlay span {
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Film roll perforations track */
+        .film-perforation-track {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 4;
+        }
+
+        .film-perforation-track.top {
+            top: -25px;
+        }
+
+        .film-perforation-track.bottom {
+            bottom: -25px;
+        }
+
+        @media (max-width: 768px) {
+            .film-roll-container {
+                bottom: 0;
+            }
+
+            .film-frame {
+                width: 200px;
+                height: 280px;
+            }
+
+            .film-roll {
+                gap: 1rem;
+            }
+
+            .film-frame::before,
+            .film-frame::after {
+                width: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .film-roll-container {
+                bottom: 0;
+            }
+
+            .film-frame {
+                width: 160px;
+                height: 220px;
+            }
+
+            .film-roll {
+                gap: 0.75rem;
+                padding: 1rem 0;
+            }
+
+            .film-frame::before,
+            .film-frame::after {
+                width: 12px;
+            }
         }
 
         .hero h1 {
@@ -400,7 +661,7 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 2.5rem;
         }
 
         .section-label {
@@ -426,7 +687,10 @@
         }
 
         .section-subtitle {
-            font-size: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 300;
+            font-style: italic;
             color: var(--text-light);
             max-width: 600px;
             margin: 0 auto;
@@ -436,18 +700,21 @@
         /* Featured Gallery */
         .gallery-section {
             background: var(--white);
+            padding: 4rem 2rem;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            gap: 1.5rem;
+            gap: 1rem;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
         }
 
@@ -492,7 +759,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 2rem;
+            padding: 1.25rem;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             color: var(--white);
             transform: translateY(100%);
@@ -504,7 +771,7 @@
         }
 
         .gallery-overlay h4 {
-            font-size: 1.25rem;
+            font-size: 1rem;
             margin-bottom: 0.25rem;
         }
 
@@ -513,10 +780,181 @@
             color: var(--gold-light);
         }
 
+        /* Gallery Loading State */
+        .gallery-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            width: 100%;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(201, 169, 124, 0.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Gallery View Button */
+        .gallery-view-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 0.5rem;
+            padding: 0.35rem 0.75rem;
+            background: rgba(201, 169, 124, 0.2);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            color: var(--gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-view-btn:hover {
+            background: var(--gold);
+            color: #1a1a1a;
+        }
+
+        .gallery-view-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Gallery Lightbox */
+        .gallery-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 10, 0.97);
+            z-index: 10000;
+            display: none;
+            flex-direction: column;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .gallery-lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(201, 169, 124, 0.3);
+            border-radius: 50%;
+            color: var(--gold);
+            font-size: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .lightbox-close:hover {
+            background: var(--gold);
+            color: #1a1a1a;
+        }
+
+        .lightbox-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+        }
+
+        .lightbox-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .lightbox-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+        }
+
+        .lightbox-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .lightbox-gallery-item {
+            aspect-ratio: 4/3;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .lightbox-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lightbox-empty {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .lightbox-empty svg {
+            width: 64px;
+            height: 64px;
+            stroke: var(--gold);
+            opacity: 0.5;
+            margin-bottom: 1rem;
+        }
+
         /* Why Choose Us */
         .why-section {
-            background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-light) 100%);
+            background: linear-gradient(135deg, var(--charcoal) 0%, #1a1a1a 50%, var(--charcoal-light) 100%);
             color: var(--white);
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 2rem;
+        }
+
+        .why-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A87C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+
+        .why-section .section-container {
+            position: relative;
+            z-index: 1;
         }
 
         .why-section .section-title {
@@ -529,55 +967,225 @@
 
         .why-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .why-card {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(201, 168, 124, 0.2);
-            border-radius: 20px;
-            transition: all 0.4s ease;
+            text-align: left;
+            padding: 2rem 1.75rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(201, 168, 124, 0.15);
+            border-radius: 16px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(201, 168, 124, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
         .why-card:hover {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.05);
             border-color: var(--gold);
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(201, 168, 124, 0.1);
+        }
+
+        .why-card:hover::before {
+            opacity: 1;
+        }
+
+        .why-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .why-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 1.5rem;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            background: rgba(201, 168, 124, 0.1);
-            border: 1px solid var(--gold);
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(201, 168, 124, 0.2), rgba(201, 168, 124, 0.05));
+            border: 1px solid rgba(201, 168, 124, 0.3);
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+        }
+
+        .why-card:hover .why-icon {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: rotate(5deg) scale(1.1);
         }
 
         .why-icon svg {
-            width: 32px;
-            height: 32px;
+            width: 24px;
+            height: 24px;
             stroke: var(--gold);
             fill: none;
             stroke-width: 1.5;
+            transition: stroke 0.4s ease;
+        }
+
+        .why-card:hover .why-icon svg {
+            stroke: var(--charcoal);
         }
 
         .why-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0;
+            color: var(--white);
+            font-weight: 500;
+            letter-spacing: 0.02em;
         }
 
         .why-card p {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .why-card .why-highlight {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .why-card:hover .why-highlight {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Featured card styling */
+        .why-card.featured {
+            grid-column: span 1;
+            grid-row: span 2;
+            background: linear-gradient(135deg, rgba(201, 168, 124, 0.08), rgba(201, 168, 124, 0.02));
+            border-color: rgba(201, 168, 124, 0.3);
+            padding: 2.5rem 2rem;
+        }
+
+        .why-card.featured h3 {
+            font-size: 1.4rem;
+            color: var(--gold);
+        }
+
+        .why-card.featured p {
+            font-size: 0.9rem;
+        }
+
+        .why-card.featured .why-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+        }
+
+        .why-card.featured .why-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Destination tags for featured card */
+        .destination-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(201, 168, 124, 0.2);
+        }
+
+        .destination-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.75rem;
+            background: rgba(201, 168, 124, 0.1);
+            border: 1px solid rgba(201, 168, 124, 0.25);
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--gold-light);
+            transition: all 0.3s ease;
+        }
+
+        .destination-tag:hover {
+            background: rgba(201, 168, 124, 0.2);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .destination-tag svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @media (max-width: 768px) {
+            .destination-tags {
+                gap: 0.4rem;
+                margin-top: 1rem;
+                padding-top: 1rem;
+            }
+
+            .destination-tag {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-card.featured {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .why-card.featured {
+                grid-column: span 1;
+            }
+
+            .why-card {
+                padding: 1.5rem;
+            }
         }
 
         /* Services Section */
@@ -696,96 +1304,141 @@
 
         /* Testimonials */
         .testimonials-section {
-            background: var(--white);
             position: relative;
             overflow: hidden;
+            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
         }
 
         .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.92) 0%, rgba(30, 30, 30, 0.88) 100%);
+            z-index: 1;
+        }
+
+        .testimonials-section::after {
             content: '"';
             position: absolute;
             top: 5%;
             left: 5%;
-            font-size: 20rem;
+            font-size: 14rem;
             font-family: 'Cormorant Garamond', serif;
-            color: rgba(201, 168, 124, 0.08);
+            color: rgba(201, 168, 124, 0.12);
             line-height: 1;
             pointer-events: none;
+            z-index: 2;
+        }
+
+        .testimonials-section .section-container {
+            position: relative;
+            z-index: 3;
+        }
+
+        .testimonials-section .section-label {
+            color: var(--gold);
+        }
+
+        .testimonials-section .section-title {
+            color: var(--white);
+        }
+
+        .testimonials-section .section-title em {
+            color: var(--gold);
+        }
+
+        .testimonials-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .testimonials-section .section-container {
+            padding: 1.5rem 2rem;
+        }
+
+        .testimonials-section .section-header {
+            margin-bottom: 1rem;
         }
 
         .testimonials-slider {
             position: relative;
-            max-width: 900px;
+            max-width: 650px;
             margin: 0 auto;
         }
 
         .testimonial-item {
             text-align: center;
-            padding: 2rem;
+            padding: 0.5rem;
         }
 
         .testimonial-stars {
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
+            gap: 0.3rem;
+            margin-bottom: 0.5rem;
         }
 
         .testimonial-stars svg {
-            width: 24px;
-            height: 24px;
+            width: 16px;
+            height: 16px;
             fill: var(--gold);
         }
 
         .testimonial-quote {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-size: clamp(1rem, 1.8vw, 1.35rem);
             font-style: italic;
-            color: var(--charcoal);
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
+            color: var(--white);
+            line-height: 1.5;
+            margin-bottom: 1rem;
         }
 
         .testimonial-author {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.35rem;
         }
 
         .author-image {
-            width: 80px;
-            height: 80px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--gold);
+            border: 2px solid var(--gold);
         }
 
         .author-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            color: var(--charcoal);
+            font-size: 0.95rem;
+            color: var(--white);
             font-weight: 600;
         }
 
         .author-info {
-            font-size: 0.85rem;
-            color: var(--gold-dark);
+            font-size: 0.7rem;
+            color: var(--gold);
         }
 
         .testimonial-nav {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 2.5rem;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
         }
 
         .testimonial-nav button {
-            width: 50px;
-            height: 50px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
-            border: 1px solid var(--gold);
-            background: transparent;
+            border: 1px solid rgba(201, 168, 124, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(4px);
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -795,6 +1448,7 @@
 
         .testimonial-nav button:hover {
             background: var(--gold);
+            border-color: var(--gold);
         }
 
         .testimonial-nav button svg {
@@ -805,7 +1459,7 @@
         }
 
         .testimonial-nav button:hover svg {
-            stroke: var(--white);
+            stroke: var(--charcoal);
         }
 
         /* About Section */
@@ -900,49 +1554,6 @@
             color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, var(--charcoal) 0%, #1a1a1a 50%, var(--charcoal-light) 100%);
-            padding: 8rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A87C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-section .section-label {
-            color: var(--gold);
-        }
-
-        .cta-section h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            color: var(--white);
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            color: var(--gold-light);
-            margin-bottom: 3rem;
-            line-height: 1.8;
         }
 
         /* Contact Section */
@@ -1140,11 +1751,26 @@
             background: var(--charcoal);
             color: var(--white);
             padding: 5rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A87C' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
         }
 
         .footer-container {
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-grid {
@@ -1320,6 +1946,24 @@
         .films-section {
             background: var(--black);
             padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .films-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A87C' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
+        }
+
+        .films-section .section-container {
+            position: relative;
+            z-index: 1;
         }
 
         .films-section .section-title {
@@ -1401,6 +2045,188 @@
             font-size: 0.85rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
+        }
+
+        /* Film Carousel Styles */
+        .film-carousel-wrapper {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .film-nav-arrow {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid rgba(201, 168, 124, 0.5);
+            background: rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .film-nav-arrow:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .film-nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .film-nav-arrow svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+            transition: stroke 0.3s ease;
+        }
+
+        .film-nav-arrow:hover svg {
+            stroke: var(--white);
+        }
+
+        .film-showcase {
+            flex: 1;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .film-video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: var(--charcoal);
+        }
+
+        .film-video-container iframe,
+        .film-video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .film-thumbnail-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .film-thumbnail-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .film-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            color: var(--gold);
+        }
+
+        .film-loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(201, 168, 124, 0.3);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .film-info {
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .film-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .film-info .film-couple {
+            color: var(--gold);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .film-info .film-location {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .film-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .film-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .film-indicator:hover {
+            background: rgba(201, 168, 124, 0.6);
+        }
+
+        .film-indicator.active {
+            background: var(--gold);
+            transform: scale(1.2);
+        }
+
+        .film-no-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .film-no-content svg {
+            width: 60px;
+            height: 60px;
+            stroke: rgba(201, 168, 124, 0.5);
+            margin-bottom: 1rem;
         }
 
         /* Responsive Design */
@@ -1563,33 +2389,6 @@
                 font-size: 0.65rem;
             }
 
-            .why-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .why-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .why-card h3 {
-                font-size: 1.25rem;
-            }
-
-            .why-card p {
-                font-size: 0.9rem;
-            }
-
-            .why-icon {
-                width: 60px;
-                height: 60px;
-            }
-
-            .why-icon svg {
-                width: 26px;
-                height: 26px;
-            }
-
             .service-card {
                 border-radius: 16px;
             }
@@ -1681,19 +2480,6 @@
                 height: 60px;
             }
 
-            .cta-section {
-                padding: 5rem 1.5rem;
-            }
-
-            .cta-section h2 {
-                font-size: 1.75rem;
-            }
-
-            .cta-section p {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-
             .gallery-item {
                 height: 250px;
                 border-radius: 10px;
@@ -1734,6 +2520,27 @@
 
             .films-section {
                 padding: 4rem 1.25rem;
+            }
+
+            .film-carousel-wrapper {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .film-nav-arrow {
+                display: none;
+            }
+
+            .film-indicators {
+                display: flex;
+            }
+
+            .film-info {
+                padding: 2rem 1.5rem 1.5rem;
+            }
+
+            .film-info h3 {
+                font-size: 1.4rem;
             }
 
             .play-button {
@@ -1851,16 +2658,12 @@
                 font-size: 1rem;
             }
 
-            .testimonials-section::before {
+            .testimonials-section {
+                background-attachment: scroll;
+            }
+
+            .testimonials-section::after {
                 font-size: 10rem;
-            }
-
-            .cta-section {
-                padding: 4rem 1rem;
-            }
-
-            .cta-section h2 {
-                font-size: 1.5rem;
             }
 
             .lightbox-close {
@@ -2015,11 +2818,10 @@
             <nav id="nav">
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#archives">Archives</a></li>
                     <li><a href="#films">Films</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="https://weddingclickzquotation.com/" class="nav-cta">Get Quote</a></li>
                 </ul>
             </nav>
 
@@ -2033,6 +2835,13 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <!-- Hero Logo -->
+        <a href="#" class="hero-logo">
+            <img src="logo.png" alt="WeddingClickz" class="hero-logo-img">
+            <h1>Wedding<span>Clickz</span></h1>
+            <span class="hero-tagline">Premium Wedding Photography</span>
+        </a>
+
         <!-- Video Background Placeholder - Replace with actual video -->
         <video class="hero-video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920">
             <!-- Add your video source here -->
@@ -2040,78 +2849,94 @@
         </video>
         <div class="hero-overlay"></div>
         
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-            <span class="hero-badge">✦ Premium Wedding Photography ✦</span>
-            <h1>Capturing Love <em>Crafting Timeless Memories</em></h1>
-            <div class="hero-buttons">
-                <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
-                <a href="https://weddingclickzquotation.com/" class="btn btn-secondary">Get Quote</a>
+        <!-- Film Roll Slider -->
+        <div class="film-roll-container">
+            <div class="film-roll">
+                <!-- First set of images -->
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Sarah & Michael</span></div>
+                </div>
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Priya & Arjun</span></div>
+                </div>
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Ananya & Vikram</span></div>
+                </div>
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Meera & Rohan</span></div>
+                </div>
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Kavya & Aditya</span></div>
+                </div>
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Neha & Rahul</span></div>
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Sarah & Michael</span></div>
+                </div>
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Priya & Arjun</span></div>
+                </div>
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Ananya & Vikram</span></div>
+                </div>
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Meera & Rohan</span></div>
+                </div>
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Kavya & Aditya</span></div>
+                </div>
+                <div class="film-frame">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&h=400&fit=crop" alt="Wedding">
+                    <div class="film-frame-overlay"><span>Neha & Rahul</span></div>
+                </div>
             </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
         </div>
     </section>
 
     <!-- Featured Gallery -->
-    <section class="gallery-section" id="portfolio">
+    <section class="gallery-section" id="archives">
         <div class="section-container">
             <div class="section-header" data-aos="fade-up">
                 <span class="section-label">Our Work</span>
-                <h2 class="section-title">Featured <em>Portfolio</em></h2>
+                <h2 class="section-title">Featured <em>Archives</em></h2>
                 <p class="section-subtitle">A curated collection of our most treasured moments, capturing the essence of love and celebration.</p>
             </div>
 
-            <div class="gallery-grid">
+            <div class="gallery-grid" id="archivesGrid">
+                <!-- Archives will be loaded dynamically -->
                 <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop" alt="Wedding Portrait">
-                    <div class="gallery-overlay">
-                        <h4>Sarah & Michael</h4>
-                        <span>Udaipur, Rajasthan</span>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=400&fit=crop" alt="Wedding Ceremony">
-                    <div class="gallery-overlay">
-                        <h4>Priya & Arjun</h4>
-                        <span>Jaipur, Rajasthan</span>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&h=400&fit=crop" alt="Couple Portrait">
-                    <div class="gallery-overlay">
-                        <h4>Ananya & Vikram</h4>
-                        <span>Goa, India</span>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
-                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=400&fit=crop" alt="Wedding Reception">
-                    <div class="gallery-overlay">
-                        <h4>Meera & Rohan</h4>
-                        <span>Mumbai, Maharashtra</span>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
-                    <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&h=400&fit=crop" alt="Wedding Details">
-                    <div class="gallery-overlay">
-                        <h4>Kavya & Aditya</h4>
-                        <span>Kerala, India</span>
-                    </div>
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="600">
-                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&h=400&fit=crop" alt="Bridal Portrait">
-                    <div class="gallery-overlay">
-                        <h4>Nisha & Karan</h4>
-                        <span>Delhi, India</span>
+                    <div class="gallery-loading">
+                        <div class="loading-spinner"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Gallery Lightbox Modal -->
+    <div class="gallery-lightbox" id="galleryLightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <div class="lightbox-header">
+            <h3 id="lightboxTitle"></h3>
+            <p id="lightboxPlace"></p>
+        </div>
+        <div class="lightbox-gallery" id="lightboxGallery">
+            <!-- Gallery images will be loaded here -->
+        </div>
+    </div>
 
     <!-- Why Choose Us -->
     <section class="why-section">
@@ -2119,50 +2944,103 @@
             <div class="section-header" data-aos="fade-up">
                 <span class="section-label">The WeddingClickz Difference</span>
                 <h2 class="section-title">Why Couples <em>Choose Us</em></h2>
-                <p class="section-subtitle">We bring artistry, passion, and unparalleled attention to detail to every wedding we capture.</p>
+                <p class="section-subtitle">Trusted by discerning couples worldwide for destination weddings, grand celebrations, and intimate ceremonies.</p>
             </div>
 
             <div class="why-grid">
-                <div class="why-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                            <circle cx="12" cy="13" r="4"/>
-                        </svg>
+                <!-- Featured Card -->
+                <div class="why-card featured" data-aos="fade-right" data-aos-delay="100">
+                    <div class="why-card-header">
+                        <div class="why-icon">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                        </div>
+                        <h3>Destination Specialists</h3>
                     </div>
-                    <h3>Cinematic Artistry</h3>
-                    <p>Every frame is crafted with the precision of cinema, using professional-grade equipment and artistic vision to create timeless visuals.</p>
+                    <p>From the palaces of Rajasthan to the beaches of Bali, we've captured love stories across multiple countries. Our international team travels worldwide with white-glove concierge service—dedicated project manager, priority editing, and same-day preview delivery.</p>
+                    <div class="destination-tags">
+                        <span class="destination-tag">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            India
+                        </span>
+                        <span class="destination-tag">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Dubai
+                        </span>
+                        <span class="destination-tag">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Bali
+                        </span>
+                        <span class="destination-tag">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Thailand
+                        </span>
+                        <span class="destination-tag">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Europe
+                        </span>
+                    </div>
+                    <span class="why-highlight">Worldwide Coverage + Concierge Service →</span>
+                </div>
+
+                <div class="why-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="why-card-header">
+                        <div class="why-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
+                        <h3>Luxury Deliverables</h3>
+                    </div>
+                    <p>Handcrafted Italian leather albums, 4K cinematic films, and private cloud galleries. Your memories presented with the elegance they deserve.</p>
+                    <span class="why-highlight">Italian Craftsmanship →</span>
                 </div>
 
                 <div class="why-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
+                    <div class="why-card-header">
+                        <div class="why-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                        </div>
+                        <h3>Cinematic Excellence</h3>
                     </div>
-                    <h3>Personal Service</h3>
-                    <p>We limit our bookings to ensure each couple receives our complete attention, creating a bespoke experience from consultation to delivery.</p>
+                    <p>Hollywood-grade equipment meets artistic vision. 8K cinema cameras, drone aerials, and precision lighting for magazine-worthy results.</p>
+                    <span class="why-highlight">8K Cinema Quality →</span>
+                </div>
+
+                <div class="why-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="why-card-header">
+                        <div class="why-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3>Dedicated Team</h3>
+                    </div>
+                    <p>Up to 15 specialists for grand weddings—lead photographers, videographers, drone operators, and lighting experts working in harmony.</p>
+                    <span class="why-highlight">15+ Member Crews →</span>
                 </div>
 
                 <div class="why-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                        </svg>
+                    <div class="why-card-header">
+                        <div class="why-icon">
+                            <svg viewBox="0 0 24 24">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                        </div>
+                        <h3>Industry Recognition</h3>
                     </div>
-                    <h3>Award-Winning</h3>
-                    <p>Recognized internationally for our distinctive style and emotional storytelling, our work has been featured in leading publications.</p>
-                </div>
-
-                <div class="why-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="why-icon">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                            <line x1="9" y1="3" x2="9" y2="21"/>
-                        </svg>
-                    </div>
-                    <h3>Premium Delivery</h3>
-                    <p>Receive your memories in stunning albums, cinematic films, and a curated online gallery—all presented with luxury packaging.</p>
+                    <p>Featured in Vogue, Harper's Bazaar, and international wedding publications. Award-winning artistry trusted by celebrities and influencers.</p>
+                    <span class="why-highlight">As Seen in Vogue →</span>
                 </div>
             </div>
         </div>
@@ -2177,17 +3055,37 @@
                 <p class="section-subtitle">Experience the emotion and artistry of our wedding cinematography through our featured highlight reels.</p>
             </div>
 
-            <div class="film-showcase" data-aos="fade-up" data-aos-delay="200">
-                <div class="film-video-container">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=675&fit=crop" alt="Wedding Film Thumbnail" style="width: 100%; height: 100%; object-fit: cover;">
-                    <div class="film-play-overlay" id="filmPlayBtn">
-                        <div class="play-button">
-                            <svg viewBox="0 0 24 24">
-                                <polygon points="5 3 19 12 5 21 5 3"/>
-                            </svg>
+            <div class="film-carousel-wrapper" data-aos="fade-up" data-aos-delay="200">
+                <!-- Left Arrow -->
+                <button class="film-nav-arrow film-nav-prev" id="filmPrevBtn" aria-label="Previous film">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+
+                <div class="film-showcase" id="filmShowcase">
+                    <div class="film-video-container" id="filmVideoContainer">
+                        <!-- Dynamic content loaded here -->
+                        <div class="film-loading">
+                            <div class="film-loading-spinner"></div>
+                            <span>Loading films...</span>
                         </div>
-                        <span>Watch Our Films</span>
                     </div>
+                    <div class="film-info" id="filmInfo">
+                        <!-- Film details loaded here -->
+                    </div>
+                </div>
+
+                <!-- Right Arrow -->
+                <button class="film-nav-arrow film-nav-next" id="filmNextBtn" aria-label="Next film">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+
+                <!-- Carousel Indicators -->
+                <div class="film-indicators" id="filmIndicators">
+                    <!-- Dynamic indicators loaded here -->
                 </div>
             </div>
         </div>
@@ -2202,116 +3100,11 @@
                 <p class="section-subtitle">Tailored packages designed to capture every precious moment of your celebration with elegance and artistry.</p>
             </div>
 
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&h=400&fit=crop" alt="Wedding Photography">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-badge">Photography</span>
-                        <h3>Wedding Photography</h3>
-                        <p>Capturing authentic emotions and stunning portraits with an artistic eye. Every image tells a story of love, joy, and celebration.</p>
-                        <ul class="service-features">
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                                Full day coverage
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                                Multiple photographers
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                                Premium album included
-                            </li>
-                        </ul>
-                        <a href="#contact" class="service-link">
-                            Learn More 
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1493804714600-6edb1cd93080?w=600&h=400&fit=crop" alt="Wedding Films">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-badge">Cinematography</span>
-                        <h3>Wedding Films</h3>
-                        <p>Cinematic storytelling that brings your wedding day to life. From highlight reels to feature-length films, we create art.</p>
-                        <ul class="service-features">
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                                4K cinematic footage
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                                Drone aerial shots
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                                Licensed music
-                            </li>
-                        </ul>
-                        <a href="#contact" class="service-link">
-                            Learn More 
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1519657337289-077653f724ed?w=600&h=400&fit=crop" alt="Pre-Wedding">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-badge">Pre-Wedding</span>
-                        <h3>Destination Shoots</h3>
-                        <p>Romantic pre-wedding sessions at breathtaking locations worldwide. Let us create a visual love story before your big day.</p>
-                        <ul class="service-features">
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                                Location scouting
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                                Styling assistance
-                            </li>
-                            <li>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                                Photo + video combo
-                            </li>
-                        </ul>
-                        <a href="#contact" class="service-link">
-                            Learn More 
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                    </div>
+            <div class="services-grid" id="servicesGrid">
+                <!-- Services loaded dynamically from server -->
+                <div class="services-loading" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                    <div style="width: 40px; height: 40px; border: 3px solid rgba(201, 168, 124, 0.3); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+                    <p style="color: rgba(255,255,255,0.6);">Loading services...</p>
                 </div>
             </div>
         </div>
@@ -2323,7 +3116,6 @@
             <div class="section-header" data-aos="fade-up">
                 <span class="section-label">Client Love</span>
                 <h2 class="section-title">Words From <em>Happy Couples</em></h2>
-                <p class="section-subtitle">The greatest compliment is the trust our couples place in us to capture their most precious moments.</p>
             </div>
 
             <div class="testimonials-slider" data-aos="fade-up" data-aos-delay="200">
@@ -2393,19 +3185,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-content" data-aos="fade-up">
-            <span class="section-label">Ready to Begin?</span>
-            <h2>Let's Create Something <em>Beautiful</em> Together</h2>
-            <p>Your love story deserves to be captured with artistry and care. Let's discuss how we can make your wedding memories timeless.</p>
-            <div class="hero-buttons">
-                <a href="https://weddingclickzquotation.com/" class="btn btn-primary">Get Quote</a>
-                <a href="#portfolio" class="btn btn-secondary">View Our Work</a>
             </div>
         </div>
     </section>
@@ -2648,12 +3427,587 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <script>
+        // API Configuration
+        const API_BASE_URL = 'https://api.edastra.in'; // Production URL
+        // const API_BASE_URL = 'http://localhost:3000'; // Development URL
+        
         // Initialize AOS
         AOS.init({
             duration: 800,
             easing: 'ease-out-cubic',
             once: true,
             offset: 100
+        });
+
+        // ==========================================
+        // Dynamic Content Loading from Admin Panel
+        // ==========================================
+        
+        let archivesData = []; // Store archives data for gallery viewing
+        
+        async function loadHomeContent() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/website/home`);
+                const result = await response.json();
+                
+                if (result.success && result.data) {
+                    const homeData = result.data;
+                    
+                    // Update hero tagline if available
+                    if (homeData.home && homeData.home.hero) {
+                        const tagline = homeData.home.hero.tagline;
+                        const taglineEl = document.querySelector('.hero-tagline');
+                        if (taglineEl && tagline) {
+                            taglineEl.textContent = tagline;
+                        }
+                        
+                        // Update film roll images
+                        if (homeData.home.hero.filmRollImages && homeData.home.hero.filmRollImages.length > 0) {
+                            renderFilmRollSlider(homeData.home.hero.filmRollImages);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.log('Using default home content:', error.message);
+            }
+        }
+        
+        async function loadArchivesContent() {
+            const grid = document.getElementById('archivesGrid');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/website/archives`);
+                const result = await response.json();
+                
+                if (result.success && result.data && result.data.archives && result.data.archives.entries) {
+                    archivesData = result.data.archives.entries;
+                    renderArchivesGrid(archivesData);
+                } else {
+                    renderArchivesGrid([]);
+                }
+            } catch (error) {
+                console.log('Using default archives content:', error.message);
+                renderDefaultArchives();
+            }
+        }
+        
+        function renderArchivesGrid(entries) {
+            const grid = document.getElementById('archivesGrid');
+            if (!grid) return;
+            
+            if (!entries || entries.length === 0) {
+                renderDefaultArchives();
+                return;
+            }
+            
+            grid.innerHTML = entries.map((entry, index) => `
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
+                    <img src="${entry.coverImageUrl}" alt="${entry.coupleName}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop'">
+                    <div class="gallery-overlay">
+                        <h4>${entry.coupleName}</h4>
+                        <span>${entry.weddingPlace}</span>
+                        ${entry.galleryImages && entry.galleryImages.length > 0 ? `
+                            <button class="gallery-view-btn" onclick="openGalleryLightbox('${entry._id}')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                View Gallery (${entry.galleryImages.length})
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+            
+            // Re-initialize AOS for new elements
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+        
+        function renderDefaultArchives() {
+            const grid = document.getElementById('archivesGrid');
+            if (!grid) return;
+            
+            // Show placeholder archives if no data from backend
+            const defaultArchives = [
+                { coupleName: 'Sarah & Michael', place: 'Udaipur, Rajasthan', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop' },
+                { coupleName: 'Priya & Arjun', place: 'Jaipur, Rajasthan', img: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=400&fit=crop' },
+                { coupleName: 'Ananya & Vikram', place: 'Goa, India', img: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&h=400&fit=crop' },
+                { coupleName: 'Meera & Rohan', place: 'Mumbai, Maharashtra', img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=400&fit=crop' },
+                { coupleName: 'Kavya & Aditya', place: 'Kerala, India', img: 'https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&h=400&fit=crop' },
+                { coupleName: 'Nisha & Karan', place: 'Delhi, India', img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&h=400&fit=crop' }
+            ];
+            
+            grid.innerHTML = defaultArchives.map((item, index) => `
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
+                    <img src="${item.img}" alt="${item.coupleName}">
+                    <div class="gallery-overlay">
+                        <h4>${item.coupleName}</h4>
+                        <span>${item.place}</span>
+                    </div>
+                </div>
+            `).join('');
+            
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+        
+        // Gallery Lightbox Functions
+        function openGalleryLightbox(entryId) {
+            const entry = archivesData.find(e => e._id === entryId);
+            if (!entry) return;
+            
+            const lightbox = document.getElementById('galleryLightbox');
+            document.getElementById('lightboxTitle').textContent = entry.coupleName;
+            document.getElementById('lightboxPlace').textContent = entry.weddingPlace;
+            
+            const galleryContainer = document.getElementById('lightboxGallery');
+            
+            if (!entry.galleryImages || entry.galleryImages.length === 0) {
+                galleryContainer.innerHTML = `
+                    <div class="lightbox-empty">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <p>No gallery images available</p>
+                    </div>
+                `;
+            } else {
+                galleryContainer.innerHTML = entry.galleryImages.map(img => `
+                    <div class="lightbox-gallery-item">
+                        <img src="${img.imageUrl}" alt="Gallery image" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    </div>
+                `).join('');
+            }
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('galleryLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close lightbox on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+        
+        function renderFilmRollSlider(images) {
+            const filmRoll = document.querySelector('.film-roll');
+            if (!filmRoll || images.length === 0) return;
+            
+            // Generate film frames HTML
+            const framesHtml = images.map(img => `
+                <div class="film-frame">
+                    <img src="${img.imageUrl}" alt="${img.altText || 'Wedding'}" loading="lazy">
+                    ${img.caption ? `<div class="film-frame-overlay"><span>${img.caption}</span></div>` : ''}
+                </div>
+            `).join('');
+            
+            // Duplicate for seamless infinite loop
+            filmRoll.innerHTML = framesHtml + framesHtml;
+        }
+        
+        // ==========================================
+        // Films Carousel
+        // ==========================================
+        
+        let filmsData = [];
+        let currentFilmIndex = 0;
+        let isVideoPlaying = false;
+        
+        async function loadFilmsContent() {
+            const videoContainer = document.getElementById('filmVideoContainer');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/website/films`);
+                const result = await response.json();
+                
+                if (result.success && result.data && result.data.films && result.data.films.entries) {
+                    filmsData = result.data.films.entries;
+                    if (filmsData.length > 0) {
+                        renderFilmCarousel();
+                        setupFilmNavigation();
+                    } else {
+                        renderNoFilms();
+                    }
+                } else {
+                    renderNoFilms();
+                }
+            } catch (error) {
+                console.log('Error loading films:', error.message);
+                renderNoFilms();
+            }
+        }
+        
+        function renderFilmCarousel() {
+            if (filmsData.length === 0) {
+                renderNoFilms();
+                return;
+            }
+            
+            // Render current film
+            renderCurrentFilm();
+            
+            // Render indicators
+            renderFilmIndicators();
+            
+            // Update navigation buttons
+            updateFilmNavButtons();
+        }
+        
+        function renderCurrentFilm() {
+            const videoContainer = document.getElementById('filmVideoContainer');
+            const filmInfo = document.getElementById('filmInfo');
+            const film = filmsData[currentFilmIndex];
+            
+            if (!film) return;
+            
+            isVideoPlaying = false;
+            
+            // Determine thumbnail URL
+            const thumbnailUrl = film.thumbnailUrl || 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=675&fit=crop';
+            
+            // Render thumbnail with play button overlay
+            videoContainer.innerHTML = `
+                <div class="film-thumbnail-wrapper" id="filmThumbnailWrapper">
+                    <img src="${thumbnailUrl}" alt="${film.title || 'Wedding Film'}" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=675&fit=crop'">
+                    <div class="film-play-overlay" id="filmPlayBtn">
+                        <div class="play-button">
+                            <svg viewBox="0 0 24 24">
+                                <polygon points="5 3 19 12 5 21 5 3"/>
+                            </svg>
+                        </div>
+                        <span>Watch Film</span>
+                    </div>
+                </div>
+            `;
+            
+            // Render film info
+            filmInfo.innerHTML = `
+                ${film.title ? `<h3>${film.title}</h3>` : ''}
+                ${film.coupleName ? `<p class="film-couple">${film.coupleName}</p>` : ''}
+                ${film.weddingPlace ? `<p class="film-location">${film.weddingPlace}</p>` : ''}
+            `;
+            
+            // Add click handler for play button
+            const playBtn = document.getElementById('filmPlayBtn');
+            if (playBtn) {
+                playBtn.addEventListener('click', () => playFilmVideo(film));
+            }
+        }
+        
+        function playFilmVideo(film) {
+            const videoContainer = document.getElementById('filmVideoContainer');
+            isVideoPlaying = true;
+            
+            // Check video source: YouTube, Vimeo, or S3 video
+            if (film.youtubeUrl) {
+                const videoId = extractYouTubeId(film.youtubeUrl);
+                if (videoId) {
+                    videoContainer.innerHTML = `
+                        <iframe 
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    `;
+                }
+            } else if (film.vimeoUrl) {
+                const videoId = extractVimeoId(film.vimeoUrl);
+                if (videoId) {
+                    videoContainer.innerHTML = `
+                        <iframe 
+                            src="https://player.vimeo.com/video/${videoId}?autoplay=1" 
+                            frameborder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    `;
+                }
+            } else if (film.videoUrl) {
+                // S3 or direct video URL
+                videoContainer.innerHTML = `
+                    <video 
+                        controls 
+                        autoplay 
+                        playsinline
+                        poster="${film.thumbnailUrl || ''}"
+                        style="width: 100%; height: 100%; object-fit: contain; background: #000;"
+                    >
+                        <source src="${film.videoUrl}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                `;
+            }
+        }
+        
+        function extractYouTubeId(url) {
+            if (!url) return null;
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+        
+        function extractVimeoId(url) {
+            if (!url) return null;
+            const regExp = /vimeo\.com\/(?:.*\/)?([0-9]+)/;
+            const match = url.match(regExp);
+            return match ? match[1] : null;
+        }
+        
+        function renderFilmIndicators() {
+            const indicatorsContainer = document.getElementById('filmIndicators');
+            if (!indicatorsContainer || filmsData.length <= 1) {
+                if (indicatorsContainer) indicatorsContainer.innerHTML = '';
+                return;
+            }
+            
+            indicatorsContainer.innerHTML = filmsData.map((_, index) => `
+                <button 
+                    class="film-indicator ${index === currentFilmIndex ? 'active' : ''}" 
+                    data-index="${index}"
+                    aria-label="Go to film ${index + 1}"
+                ></button>
+            `).join('');
+            
+            // Add click handlers
+            indicatorsContainer.querySelectorAll('.film-indicator').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const index = parseInt(btn.dataset.index);
+                    goToFilm(index);
+                });
+            });
+        }
+        
+        function setupFilmNavigation() {
+            const prevBtn = document.getElementById('filmPrevBtn');
+            const nextBtn = document.getElementById('filmNextBtn');
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (currentFilmIndex > 0) {
+                        currentFilmIndex--;
+                        renderCurrentFilm();
+                        updateFilmNavButtons();
+                        updateFilmIndicators();
+                    }
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    if (currentFilmIndex < filmsData.length - 1) {
+                        currentFilmIndex++;
+                        renderCurrentFilm();
+                        updateFilmNavButtons();
+                        updateFilmIndicators();
+                    }
+                });
+            }
+        }
+        
+        function goToFilm(index) {
+            if (index >= 0 && index < filmsData.length && index !== currentFilmIndex) {
+                currentFilmIndex = index;
+                renderCurrentFilm();
+                updateFilmNavButtons();
+                updateFilmIndicators();
+            }
+        }
+        
+        function updateFilmNavButtons() {
+            const prevBtn = document.getElementById('filmPrevBtn');
+            const nextBtn = document.getElementById('filmNextBtn');
+            
+            if (prevBtn) {
+                prevBtn.disabled = currentFilmIndex === 0;
+                prevBtn.style.display = filmsData.length <= 1 ? 'none' : 'flex';
+            }
+            
+            if (nextBtn) {
+                nextBtn.disabled = currentFilmIndex === filmsData.length - 1;
+                nextBtn.style.display = filmsData.length <= 1 ? 'none' : 'flex';
+            }
+        }
+        
+        function updateFilmIndicators() {
+            const indicators = document.querySelectorAll('.film-indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentFilmIndex);
+            });
+        }
+        
+        function renderNoFilms() {
+            const videoContainer = document.getElementById('filmVideoContainer');
+            const filmInfo = document.getElementById('filmInfo');
+            
+            videoContainer.innerHTML = `
+                <div class="film-no-content">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                    <p>Films coming soon</p>
+                </div>
+            `;
+            
+            if (filmInfo) filmInfo.innerHTML = '';
+            
+            // Hide navigation
+            const prevBtn = document.getElementById('filmPrevBtn');
+            const nextBtn = document.getElementById('filmNextBtn');
+            const indicators = document.getElementById('filmIndicators');
+            
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+            if (indicators) indicators.innerHTML = '';
+        }
+        
+        // ==========================================
+        // Services Loading
+        // ==========================================
+        
+        async function loadServicesContent() {
+            const grid = document.getElementById('servicesGrid');
+            if (!grid) return;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/website/services`);
+                const result = await response.json();
+                
+                if (result.success && result.data && result.data.services && result.data.services.entries) {
+                    const services = result.data.services.entries;
+                    if (services.length > 0) {
+                        renderServicesGrid(services);
+                    } else {
+                        renderDefaultServices();
+                    }
+                } else {
+                    renderDefaultServices();
+                }
+            } catch (error) {
+                console.log('Error loading services:', error.message);
+                renderDefaultServices();
+            }
+        }
+        
+        function renderServicesGrid(services) {
+            const grid = document.getElementById('servicesGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = services.map((service, index) => `
+                <div class="service-card" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
+                    <div class="service-image">
+                        <img src="${service.imageUrl}" alt="${service.title}" onerror="this.src='https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&h=400&fit=crop'">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-badge">${service.badge}</span>
+                        <h3>${service.title}</h3>
+                        <p>${service.description}</p>
+                        ${service.features && service.features.length > 0 ? `
+                            <ul class="service-features">
+                                ${service.features.map(f => `
+                                    <li>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20 6 9 17 4 12"/>
+                                        </svg>
+                                        ${f.text}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        ` : ''}
+                        <a href="${service.linkUrl || '#contact'}" class="service-link">
+                            ${service.linkText || 'Learn More'} 
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Re-initialize AOS for new elements
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+        
+        function renderDefaultServices() {
+            const grid = document.getElementById('servicesGrid');
+            if (!grid) return;
+            
+            // Show default placeholder services
+            const defaultServices = [
+                {
+                    badge: 'Photography',
+                    title: 'Wedding Photography',
+                    description: 'Capturing authentic emotions and stunning portraits with an artistic eye. Every image tells a story of love, joy, and celebration.',
+                    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&h=400&fit=crop',
+                    features: ['Full day coverage', 'Multiple photographers', 'Premium album included']
+                },
+                {
+                    badge: 'Cinematography',
+                    title: 'Wedding Films',
+                    description: 'Cinematic storytelling that brings your wedding day to life. From highlight reels to feature-length films, we create art.',
+                    image: 'https://images.unsplash.com/photo-1493804714600-6edb1cd93080?w=600&h=400&fit=crop',
+                    features: ['4K cinematic footage', 'Drone aerial shots', 'Licensed music']
+                },
+                {
+                    badge: 'Pre-Wedding',
+                    title: 'Destination Shoots',
+                    description: 'Romantic pre-wedding sessions at breathtaking locations worldwide. Let us create a visual love story before your big day.',
+                    image: 'https://images.unsplash.com/photo-1519657337289-077653f724ed?w=600&h=400&fit=crop',
+                    features: ['Location scouting', 'Styling assistance', 'Photo + video combo']
+                }
+            ];
+            
+            grid.innerHTML = defaultServices.map((service, index) => `
+                <div class="service-card" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
+                    <div class="service-image">
+                        <img src="${service.image}" alt="${service.title}">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-badge">${service.badge}</span>
+                        <h3>${service.title}</h3>
+                        <p>${service.description}</p>
+                        <ul class="service-features">
+                            ${service.features.map(f => `
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                    ${f}
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <a href="#contact" class="service-link">
+                            Learn More 
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Re-initialize AOS for new elements
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+        
+        // Load home content on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHomeContent();
+            loadArchivesContent();
+            loadFilmsContent();
+            loadServicesContent();
         });
 
         // Preloader
@@ -2663,9 +4017,20 @@
             }, 1500);
         });
 
-        // Header scroll effect
+        // Header scroll effect - show after scrolling to Our Work section
         const header = document.getElementById('header');
+        const archivesSection = document.getElementById('archives');
+        
         window.addEventListener('scroll', () => {
+            const archivesTop = archivesSection.getBoundingClientRect().top;
+            const triggerPoint = window.innerHeight * 0.5; // Show when archives section is halfway into view
+            
+            if (archivesTop <= triggerPoint) {
+                header.classList.add('visible');
+            } else {
+                header.classList.remove('visible');
+            }
+            
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
             } else {
