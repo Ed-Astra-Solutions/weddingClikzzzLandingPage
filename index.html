@@ -40,6 +40,7 @@
 
         html {
             scroll-behavior: smooth;
+            width: 100%;
         }
 
         body {
@@ -48,6 +49,8 @@
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
+            min-width: 100%;
         }
 
         /* Typography */
@@ -269,12 +272,12 @@
         }
 
         .hero-logo img {
-            height: 70px;
+            height: 100px;
             width: auto;
         }
 
         .hero-logo h1 {
-            font-size: 1.75rem;
+            font-size: 2rem;
             color: var(--white);
             letter-spacing: 0.08em;
             font-weight: 400;
@@ -286,7 +289,7 @@
 
         .hero-tagline {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 300;
             color: var(--gold-light);
             letter-spacing: 0.35em;
@@ -296,7 +299,26 @@
 
         @media (max-width: 768px) {
             .hero-logo {
-                top: 1.5rem;
+                top: 0.75rem;
+            }
+
+            .hero-logo img {
+                height: 70px;
+            }
+
+            .hero-logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.6rem;
+                letter-spacing: 0.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-logo {
+                top: 0.5rem;
             }
 
             .hero-logo img {
@@ -304,18 +326,18 @@
             }
 
             .hero-logo h1 {
-                font-size: 1.4rem;
+                font-size: 1.25rem;
             }
 
             .hero-tagline {
-                font-size: 0.6rem;
-                letter-spacing: 0.25em;
+                font-size: 0.5rem;
+                letter-spacing: 0.15em;
             }
         }
-
-        @media (max-width: 480px) {
+        
+        @media (max-width: 360px) {
             .hero-logo {
-                top: 1.25rem;
+                top: 0.35rem;
             }
 
             .hero-logo img {
@@ -323,12 +345,12 @@
             }
 
             .hero-logo h1 {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .hero-tagline {
-                font-size: 0.55rem;
-                letter-spacing: 0.2em;
+                font-size: 0.45rem;
+                letter-spacing: 0.1em;
             }
         }
 
@@ -336,6 +358,7 @@
         .hero {
             min-height: 100vh;
             min-height: 100dvh;
+            width: 100%;
             position: relative;
             display: flex;
             align-items: center;
@@ -424,31 +447,6 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .film-frame::before,
-        .film-frame::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 20px;
-            height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0px,
-                transparent 8px,
-                rgba(201, 168, 124, 0.3) 8px,
-                rgba(201, 168, 124, 0.3) 16px
-            );
-            z-index: 2;
-        }
-
-        .film-frame::before {
-            left: 0;
-        }
-
-        .film-frame::after {
-            right: 0;
-        }
-
         .film-frame img {
             width: 100%;
             height: 100%;
@@ -468,8 +466,8 @@
         .film-frame-overlay {
             position: absolute;
             bottom: 0;
-            left: 20px;
-            right: 20px;
+            left: 0;
+            right: 0;
             padding: 1rem;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             opacity: 0;
@@ -511,41 +509,53 @@
         @media (max-width: 768px) {
             .film-roll-container {
                 bottom: 0;
+                padding-bottom: 1rem;
             }
 
             .film-frame {
-                width: 200px;
-                height: 280px;
+                width: 280px;
+                height: 420px;
+                border-radius: 12px;
             }
 
             .film-roll {
                 gap: 1rem;
-            }
-
-            .film-frame::before,
-            .film-frame::after {
-                width: 15px;
+                padding: 0.75rem 0;
             }
         }
 
         @media (max-width: 480px) {
             .film-roll-container {
                 bottom: 0;
+                padding-bottom: 0.75rem;
             }
 
             .film-frame {
-                width: 160px;
-                height: 220px;
+                width: 240px;
+                height: 380px;
+                border-radius: 10px;
             }
 
             .film-roll {
                 gap: 0.75rem;
-                padding: 1rem 0;
+                padding: 0.5rem 0;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .film-roll-container {
+                padding-bottom: 0.5rem;
             }
 
-            .film-frame::before,
-            .film-frame::after {
-                width: 12px;
+            .film-frame {
+                width: 200px;
+                height: 320px;
+                border-radius: 8px;
+            }
+
+            .film-roll {
+                gap: 0.5rem;
+                padding: 0.35rem 0;
             }
         }
 
@@ -652,11 +662,13 @@
         /* Section Styling */
         section {
             padding: 6rem 2rem;
+            width: 100%;
         }
 
         .section-container {
             max-width: 1400px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .section-header {
@@ -1174,6 +1186,10 @@
         }
 
         @media (max-width: 768px) {
+            .why-section {
+                padding: 3rem 1rem;
+            }
+
             .why-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -1181,10 +1197,192 @@
 
             .why-card.featured {
                 grid-column: span 1;
+                padding: 1.5rem 1.25rem;
             }
 
             .why-card {
-                padding: 1.5rem;
+                padding: 1.25rem 1rem;
+            }
+
+            .why-card-header {
+                gap: 0.75rem;
+            }
+
+            .why-icon {
+                width: 42px;
+                height: 42px;
+                border-radius: 10px;
+            }
+
+            .why-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .why-card.featured .why-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .why-card.featured .why-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .why-card h3 {
+                font-size: 1.05rem;
+            }
+
+            .why-card.featured h3 {
+                font-size: 1.2rem;
+            }
+
+            .why-card p {
+                font-size: 0.85rem;
+                line-height: 1.6;
+            }
+
+            .why-card .why-highlight {
+                opacity: 1;
+                transform: translateY(0);
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .why-section {
+                padding: 2.5rem 0.75rem;
+            }
+
+            .why-grid {
+                gap: 0.75rem;
+            }
+
+            .why-card {
+                padding: 1rem 0.875rem;
+            }
+
+            .why-card.featured {
+                padding: 1.25rem 1rem;
+            }
+
+            .why-card-header {
+                gap: 0.6rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .why-icon {
+                width: 38px;
+                height: 38px;
+                border-radius: 8px;
+            }
+
+            .why-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .why-card.featured .why-icon {
+                width: 44px;
+                height: 44px;
+            }
+
+            .why-card.featured .why-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .why-card h3 {
+                font-size: 0.95rem;
+            }
+
+            .why-card.featured h3 {
+                font-size: 1.1rem;
+            }
+
+            .why-card p {
+                font-size: 0.8rem;
+                line-height: 1.55;
+            }
+
+            .why-card.featured p {
+                font-size: 0.85rem;
+            }
+
+            .why-card .why-highlight {
+                font-size: 0.6rem;
+                margin-top: 0.75rem;
+            }
+
+            .destination-tags {
+                gap: 0.35rem;
+                margin-top: 0.875rem;
+                padding-top: 0.875rem;
+            }
+
+            .destination-tag {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.55rem;
+                border-radius: 16px;
+            }
+
+            .destination-tag svg {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .why-section {
+                padding: 2rem 0.5rem;
+            }
+
+            .why-grid {
+                gap: 0.6rem;
+            }
+
+            .why-card {
+                padding: 0.875rem 0.75rem;
+            }
+
+            .why-card.featured {
+                padding: 1rem 0.875rem;
+            }
+
+            .why-card-header {
+                gap: 0.5rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .why-icon {
+                width: 34px;
+                height: 34px;
+            }
+
+            .why-icon svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .why-card h3 {
+                font-size: 0.9rem;
+            }
+
+            .why-card.featured h3 {
+                font-size: 1rem;
+            }
+
+            .why-card p {
+                font-size: 0.75rem;
+            }
+
+            .why-card .why-highlight {
+                font-size: 0.55rem;
+            }
+
+            .destination-tag {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.5rem;
             }
         }
 
@@ -1825,6 +2023,50 @@
             fill: var(--white);
         }
 
+        /* Footer Contact Inline */
+        .footer-contact-inline {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-contact-inline a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact-inline a:hover {
+            color: var(--gold);
+        }
+
+        .footer-contact-inline a svg {
+            stroke: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* reCAPTCHA notice */
+        .recaptcha-notice {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.5;
+        }
+
+        .recaptcha-notice a {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .recaptcha-notice a:hover {
+            color: var(--gold);
+        }
+
         .footer-links h4 {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.85rem;
@@ -2101,12 +2343,16 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+            min-width: 0;
+            width: 100%;
         }
 
         .film-video-container {
             position: relative;
+            width: 100%;
             padding-bottom: 56.25%;
             background: var(--charcoal);
+            overflow: hidden;
         }
 
         .film-video-container iframe,
@@ -2213,6 +2459,50 @@
             transform: scale(1.2);
         }
 
+        /* Mobile Navigation Controls - hidden on desktop */
+        .film-nav-controls {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .film-nav-arrow-mobile {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(201, 168, 124, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .film-nav-arrow-mobile:hover {
+            background: rgba(201, 168, 124, 0.2);
+            border-color: var(--gold);
+        }
+
+        .film-nav-arrow-mobile:active {
+            transform: scale(0.95);
+            background: var(--gold);
+        }
+
+        .film-nav-arrow-mobile:active svg {
+            stroke: var(--charcoal);
+        }
+
+        .film-nav-arrow-mobile svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gold);
+            transition: stroke 0.3s ease;
+        }
+
         .film-no-content {
             position: absolute;
             top: 50%;
@@ -2230,10 +2520,146 @@
         }
 
         /* Responsive Design */
+        
+        /* Large laptops and small desktops - height optimization */
+        @media (max-height: 900px) and (min-width: 769px) {
+            .hero-logo {
+                top: 1rem;
+            }
+            
+            .hero-logo img {
+                height: 55px;
+            }
+            
+            .hero-logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-tagline {
+                font-size: 0.6rem;
+            }
+            
+            .film-frame {
+                width: 280px;
+                height: 350px;
+            }
+            
+            .film-roll-container {
+                padding-bottom: 2rem;
+            }
+            
+            .film-roll {
+                padding: 1rem 0;
+            }
+        }
+        
+        /* Shorter laptop screens */
+        @media (max-height: 750px) and (min-width: 769px) {
+            .hero-logo {
+                top: 0.75rem;
+            }
+            
+            .hero-logo img {
+                height: 45px;
+            }
+            
+            .hero-logo h1 {
+                font-size: 1.3rem;
+            }
+            
+            .hero-tagline {
+                font-size: 0.55rem;
+                letter-spacing: 0.25em;
+            }
+            
+            .film-frame {
+                width: 220px;
+                height: 280px;
+            }
+            
+            .film-roll-container {
+                padding-bottom: 1.5rem;
+            }
+            
+            .film-roll {
+                gap: 1rem;
+                padding: 0.75rem 0;
+            }
+        }
+        
+        /* Very short screens (some laptops with high taskbars) */
+        @media (max-height: 650px) and (min-width: 769px) {
+            .hero-logo img {
+                height: 40px;
+            }
+            
+            .hero-logo h1 {
+                font-size: 1.15rem;
+            }
+            
+            .hero-tagline {
+                font-size: 0.5rem;
+            }
+            
+            .film-frame {
+                width: 180px;
+                height: 230px;
+            }
+            
+            .film-roll-container {
+                padding-bottom: 1rem;
+            }
+            
+            .film-roll {
+                gap: 0.75rem;
+                padding: 0.5rem 0;
+            }
+        }
+        
+        /* Landscape tablets and small laptops */
+        @media (orientation: landscape) and (max-height: 600px) {
+            .hero-logo {
+                top: 0.5rem;
+            }
+            
+            .hero-logo img {
+                height: 35px;
+            }
+            
+            .hero-logo h1 {
+                font-size: 1.1rem;
+            }
+            
+            .hero-tagline {
+                font-size: 0.5rem;
+                letter-spacing: 0.2em;
+            }
+            
+            .film-frame {
+                width: 150px;
+                height: 190px;
+            }
+            
+            .film-roll-container {
+                padding-bottom: 0.75rem;
+            }
+            
+            .film-roll {
+                gap: 0.75rem;
+                padding: 0.5rem 0;
+            }
+        }
+        
+        /* Width-based responsive - 1200px */
         @media (max-width: 1200px) {
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 3rem;
+            }
+            
+            .film-frame {
+                width: 300px;
+                height: 380px;
             }
         }
 
@@ -2291,7 +2717,8 @@
             }
 
             .gallery-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
             }
 
             .gallery-item:nth-child(1),
@@ -2303,13 +2730,46 @@
                 grid-column: span 1;
                 grid-row: span 1;
             }
+            
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
 
             .gallery-item {
-                height: 300px;
+                height: 200px;
+                border-radius: 10px;
+            }
+            
+            .gallery-item:nth-child(1) {
+                height: 280px;
+            }
+            
+            .gallery-overlay {
+                transform: translateY(0);
+                padding: 1rem;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+            }
+            
+            .gallery-overlay h4 {
+                font-size: 0.95rem;
+            }
+            
+            .gallery-overlay span {
+                font-size: 0.8rem;
             }
 
             .services-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .film-frame {
+                width: 240px;
+                height: 300px;
+            }
+            
+            .film-roll {
+                gap: 1rem;
             }
 
             .films-section {
@@ -2329,16 +2789,19 @@
 
         @media (max-width: 768px) {
             section {
-                padding: 4rem 1.25rem;
+                padding: 4rem 1rem;
+                width: 100%;
             }
 
             .hero {
                 min-height: 100svh;
+                width: 100%;
             }
 
             .hero-content {
-                padding: 1.5rem;
+                padding: 1rem;
                 padding-bottom: 6rem;
+                width: 100%;
             }
 
             .hero h1 {
@@ -2436,20 +2899,38 @@
             }
 
             .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .footer-brand {
+                grid-column: span 2;
+            }
+
+            .footer-contact-inline {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .footer-contact-inline a {
+                font-size: 0.85rem;
             }
 
             .footer-bottom {
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 1rem;
                 text-align: center;
             }
 
             .footer-legal {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 1rem;
+                gap: 0.5rem;
+            }
+
+            .recaptcha-notice {
+                font-size: 0.7rem;
             }
 
             .contact-form {
@@ -2461,13 +2942,44 @@
                 font-size: 1.5rem;
             }
 
+            /* Testimonials - Mobile 768px */
+            .testimonials-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .testimonials-section .section-container {
+                padding: 1rem 0.5rem;
+            }
+
+            .testimonials-section::after {
+                font-size: 12rem;
+                top: 2%;
+                left: 3%;
+            }
+
+            .testimonials-slider {
+                max-width: 100%;
+            }
+
             .testimonial-quote {
                 font-size: 1.15rem;
                 padding: 0 0.5rem;
+                line-height: 1.6;
+            }
+
+            .testimonial-stars {
+                gap: 0.4rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .testimonial-stars svg {
+                width: 18px;
+                height: 18px;
             }
 
             .testimonial-nav {
-                margin-top: 2rem;
+                margin-top: 1.5rem;
+                gap: 0.75rem;
             }
 
             .testimonial-nav button {
@@ -2476,23 +2988,57 @@
             }
 
             .author-image {
-                width: 60px;
-                height: 60px;
+                width: 56px;
+                height: 56px;
+                border-width: 2px;
+            }
+
+            .author-name {
+                font-size: 1rem;
+            }
+
+            .author-info {
+                font-size: 0.75rem;
+            }
+
+            .testimonial-author {
+                gap: 0.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
             }
 
             .gallery-item {
-                height: 250px;
-                border-radius: 10px;
+                height: 180px;
+                border-radius: 8px;
+            }
+            
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                height: 240px;
             }
 
             .gallery-overlay {
-                padding: 1.5rem;
+                padding: 1rem;
                 transform: translateY(0);
                 background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
             }
 
             .gallery-overlay h4 {
-                font-size: 1.1rem;
+                font-size: 0.9rem;
+                margin-bottom: 0.15rem;
+            }
+            
+            .gallery-overlay span {
+                font-size: 0.75rem;
+            }
+            
+            .gallery-view-btn {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.65rem;
+                margin-top: 0.35rem;
             }
 
             .contact-info h3 {
@@ -2516,6 +3062,14 @@
 
             .film-showcase {
                 border-radius: 12px;
+                width: 100%;
+                flex: none;
+            }
+
+            .film-video-container {
+                width: 100%;
+                padding-bottom: 56.25%;
+                min-height: 200px;
             }
 
             .films-section {
@@ -2524,15 +3078,36 @@
 
             .film-carousel-wrapper {
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 1rem;
+                width: 100%;
             }
 
+            /* Hide desktop arrows on mobile */
             .film-nav-arrow {
+                display: none;
+            }
+
+            /* Show mobile navigation controls - indicators only */
+            .film-nav-controls {
+                display: flex;
+                justify-content: center;
+                gap: 1.25rem;
+            }
+
+            /* Hide arrow buttons on mobile */
+            .film-nav-arrow-mobile {
                 display: none;
             }
 
             .film-indicators {
                 display: flex;
+                margin: 0;
+                gap: 0.6rem;
+            }
+
+            .film-indicator {
+                width: 10px;
+                height: 10px;
             }
 
             .film-info {
@@ -2593,15 +3168,17 @@
             }
 
             section {
-                padding: 3rem 1rem;
+                padding: 3rem 0.75rem;
+                width: 100%;
+            }
+
+            .section-container {
+                width: 100%;
+                padding: 0;
             }
 
             .section-title {
                 font-size: 1.5rem;
-            }
-
-            .why-card {
-                padding: 1.75rem 1.25rem;
             }
 
             .service-image {
@@ -2636,6 +3213,53 @@
             .stat-label {
                 font-size: 0.6rem;
             }
+            
+            /* About Section - Mobile 480px */
+            .about-section {
+                padding: 3rem 1rem;
+            }
+            
+            .about-grid {
+                gap: 2rem;
+            }
+            
+            .about-image {
+                order: 1;
+            }
+            
+            .about-content {
+                order: 2;
+            }
+            
+            .about-image-badge {
+                right: 0.75rem;
+                bottom: -1rem;
+                padding: 1rem 1.25rem;
+            }
+            
+            .about-image-badge .number {
+                font-size: 2rem;
+            }
+            
+            .about-image-badge span {
+                font-size: 0.7rem;
+            }
+            
+            .about-content h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .about-content p {
+                font-size: 0.9rem;
+                line-height: 1.7;
+                margin-bottom: 1rem;
+            }
+            
+            .about-stats {
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+            }
 
             .newsletter-form {
                 flex-direction: column;
@@ -2650,20 +3274,269 @@
                 padding: 1.25rem;
             }
 
+            /* Contact & Footer - Mobile 480px */
+            .contact-details {
+                gap: 1rem;
+            }
+
+            .contact-item {
+                gap: 0.75rem;
+            }
+
+            .contact-item-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .contact-item-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .contact-item-content h4 {
+                font-size: 0.75rem;
+            }
+
+            .contact-item-content span,
+            .contact-item-content a {
+                font-size: 0.85rem;
+            }
+
+            .contact-social a {
+                width: 40px;
+                height: 40px;
+            }
+
+            .contact-social a svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-brand {
+                grid-column: span 2;
+            }
+
+            .footer-brand h3 {
+                font-size: 1.5rem;
+            }
+
+            .footer-brand p {
+                font-size: 0.85rem;
+                line-height: 1.6;
+            }
+
+            .footer-contact-inline {
+                gap: 0.75rem;
+            }
+
+            .footer-contact-inline a {
+                font-size: 0.8rem;
+            }
+
+            .footer-links h4 {
+                font-size: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+
+            .footer-links li {
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-newsletter {
+                grid-column: span 2;
+            }
+
+            .footer-newsletter h4 {
+                font-size: 0.75rem;
+            }
+
+            .footer-newsletter p {
+                font-size: 0.8rem;
+            }
+
+            .footer-social a {
+                width: 36px;
+                height: 36px;
+            }
+
+            .footer-social a svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .footer-copyright {
+                font-size: 0.75rem;
+            }
+
+            .recaptcha-notice {
+                font-size: 0.65rem;
+            }
+
             .gallery-item {
                 height: 220px;
             }
 
-            .testimonial-quote {
-                font-size: 1rem;
+            /* Testimonials - Mobile 480px */
+            .testimonials-section {
+                padding: 2.5rem 1rem;
+                background-attachment: scroll; /* Disable fixed on mobile for performance */
             }
 
-            .testimonials-section {
-                background-attachment: scroll;
+            .testimonials-section .section-container {
+                padding: 0.75rem 0.25rem;
+            }
+
+            .testimonials-section .section-header {
+                margin-bottom: 0.75rem;
             }
 
             .testimonials-section::after {
-                font-size: 10rem;
+                font-size: 8rem;
+                top: 1%;
+                left: 2%;
+            }
+
+            .testimonial-item {
+                padding: 0.25rem;
+            }
+
+            .testimonial-quote {
+                font-size: 1rem;
+                line-height: 1.65;
+                padding: 0 0.25rem;
+            }
+
+            .testimonial-stars {
+                gap: 0.35rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .testimonial-stars svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .author-image {
+                width: 50px;
+                height: 50px;
+            }
+
+            .author-name {
+                font-size: 0.9rem;
+            }
+
+            .author-info {
+                font-size: 0.7rem;
+            }
+
+            .testimonial-author {
+                gap: 0.4rem;
+            }
+
+            .testimonial-nav {
+                margin-top: 1.25rem;
+                gap: 0.6rem;
+            }
+
+            .testimonial-nav button {
+                width: 40px;
+                height: 40px;
+            }
+
+            .testimonial-nav button svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            /* Films Section - Mobile 480px */
+            .films-section {
+                padding: 3rem 0.75rem;
+            }
+
+            .film-carousel-wrapper {
+                width: 100%;
+                padding: 0;
+            }
+
+            .film-showcase {
+                border-radius: 10px;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+                width: 100%;
+            }
+
+            .film-video-container {
+                width: 100%;
+                padding-bottom: 56.25%;
+                min-height: 180px;
+            }
+
+            .film-info {
+                padding: 1.5rem 1rem 1rem;
+            }
+
+            .film-info h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.35rem;
+            }
+
+            .film-info .film-couple {
+                font-size: 0.85rem;
+            }
+
+            .film-info .film-location {
+                font-size: 0.75rem;
+            }
+
+            .play-button {
+                width: 55px;
+                height: 55px;
+                margin-bottom: 0.75rem;
+            }
+
+            .play-button svg {
+                width: 22px;
+                height: 22px;
+                margin-left: 3px;
+            }
+
+            .film-play-overlay span {
+                font-size: 0.65rem;
+                letter-spacing: 0.15em;
+            }
+
+            /* Mobile nav controls - 480px */
+            .film-nav-controls {
+                gap: 0;
+                margin-top: 1rem;
+            }
+
+            .film-indicators {
+                gap: 0.5rem;
+                margin: 0;
+            }
+
+            .film-indicator {
+                width: 9px;
+                height: 9px;
+            }
+
+            .film-loading-spinner {
+                width: 32px;
+                height: 32px;
+            }
+
+            .film-no-content svg {
+                width: 48px;
+                height: 48px;
             }
 
             .lightbox-close {
@@ -2698,6 +3571,365 @@
                 width: 150px;
             }
         }
+        
+        /* Extra small devices (360px and below) */
+        @media (max-width: 360px) {
+            section {
+                padding: 2.5rem 0.5rem;
+                width: 100%;
+            }
+            
+            .section-container {
+                width: 100%;
+                padding: 0;
+            }
+            
+            .section-title {
+                font-size: 1.35rem;
+            }
+            
+            .section-subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.75rem;
+            }
+            
+            .service-content {
+                padding: 1rem;
+            }
+            
+            .service-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .contact-form {
+                padding: 1rem;
+            }
+            
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 0.75rem;
+            }
+            
+            /* Contact & Footer - Mobile 360px */
+            .contact-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .contact-info > p {
+                font-size: 0.85rem;
+            }
+
+            .contact-item-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .contact-item-icon svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .contact-item-content h4 {
+                font-size: 0.7rem;
+            }
+
+            .contact-item-content span,
+            .contact-item-content a {
+                font-size: 0.8rem;
+            }
+
+            .contact-social {
+                gap: 0.75rem;
+                margin-top: 1.5rem;
+            }
+
+            .contact-social a {
+                width: 36px;
+                height: 36px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-brand {
+                grid-column: span 1;
+            }
+
+            .footer-brand h3 {
+                font-size: 1.35rem;
+            }
+
+            .footer-brand p {
+                font-size: 0.8rem;
+            }
+
+            .footer-contact-inline {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .footer-contact-inline a {
+                font-size: 0.75rem;
+            }
+
+            .footer-links {
+                display: inline-block;
+                width: 48%;
+                vertical-align: top;
+            }
+
+            .footer-newsletter {
+                grid-column: span 1;
+            }
+
+            .footer-social a {
+                width: 34px;
+                height: 34px;
+            }
+
+            .footer-copyright {
+                font-size: 0.7rem;
+            }
+
+            .recaptcha-notice {
+                font-size: 0.6rem;
+                line-height: 1.4;
+            }
+            
+            .gallery-grid {
+                gap: 0.5rem;
+            }
+            
+            .gallery-item {
+                height: 150px;
+                border-radius: 6px;
+            }
+            
+            .gallery-item:nth-child(1) {
+                height: 200px;
+            }
+            
+            .gallery-overlay {
+                padding: 0.75rem;
+            }
+            
+            .gallery-overlay h4 {
+                font-size: 0.8rem;
+            }
+            
+            .gallery-overlay span {
+                font-size: 0.65rem;
+            }
+            
+            .gallery-view-btn {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.6rem;
+            }
+            
+            /* About Section - Mobile 360px */
+            .about-section {
+                padding: 2.5rem 0.75rem;
+            }
+            
+            .about-grid {
+                gap: 1.5rem;
+            }
+            
+            .about-image-badge {
+                right: 0.5rem;
+                bottom: -0.75rem;
+                padding: 0.75rem 1rem;
+            }
+            
+            .about-image-badge .number {
+                font-size: 1.6rem;
+            }
+            
+            .about-image-badge span {
+                font-size: 0.6rem;
+                letter-spacing: 0.05em;
+            }
+            
+            .about-content .section-label {
+                font-size: 0.7rem;
+            }
+            
+            .about-content h2 {
+                font-size: 1.35rem;
+            }
+            
+            .about-content p {
+                font-size: 0.85rem;
+                line-height: 1.65;
+            }
+            
+            .about-stats {
+                gap: 0.35rem;
+            }
+            
+            .stat-number {
+                font-size: 1.3rem;
+            }
+            
+            .stat-label {
+                font-size: 0.55rem;
+            }
+            
+            /* Testimonials - Mobile 360px */
+            .testimonials-section {
+                padding: 2rem 0.75rem;
+            }
+
+            .testimonials-section .section-container {
+                padding: 0.5rem 0;
+            }
+
+            .testimonials-section::after {
+                font-size: 6rem;
+                top: 0%;
+                left: 1%;
+            }
+
+            .testimonial-quote {
+                font-size: 0.9rem;
+                line-height: 1.7;
+                padding: 0;
+            }
+
+            .testimonial-stars {
+                gap: 0.3rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .testimonial-stars svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            .author-image {
+                width: 44px;
+                height: 44px;
+            }
+
+            .author-name {
+                font-size: 0.85rem;
+            }
+
+            .author-info {
+                font-size: 0.65rem;
+            }
+
+            .testimonial-author {
+                gap: 0.35rem;
+            }
+
+            .testimonial-nav {
+                margin-top: 1rem;
+                gap: 0.5rem;
+            }
+
+            .testimonial-nav button {
+                width: 36px;
+                height: 36px;
+            }
+
+            .testimonial-nav button svg {
+                width: 16px;
+                height: 16px;
+            }
+            
+            .stat-number {
+                font-size: 1.35rem;
+            }
+            
+            .stat-label {
+                font-size: 0.55rem;
+            }
+            
+            /* Films Section - Mobile 360px */
+            .films-section {
+                padding: 2.5rem 0.5rem;
+            }
+
+            .film-carousel-wrapper {
+                width: 100%;
+                padding: 0;
+            }
+
+            .film-showcase {
+                border-radius: 8px;
+                width: 100%;
+            }
+
+            .film-video-container {
+                width: 100%;
+                padding-bottom: 56.25%;
+                min-height: 160px;
+            }
+
+            .film-info {
+                padding: 1.25rem 0.75rem 0.75rem;
+            }
+
+            .film-info h3 {
+                font-size: 1rem;
+            }
+
+            .film-info .film-couple {
+                font-size: 0.75rem;
+            }
+
+            .film-info .film-location {
+                font-size: 0.65rem;
+            }
+
+            .play-button {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 0.5rem;
+            }
+
+            .play-button svg {
+                width: 20px;
+                height: 20px;
+                margin-left: 2px;
+            }
+
+            .film-play-overlay span {
+                font-size: 0.6rem;
+            }
+
+            /* Mobile nav controls - 360px */
+            .film-nav-controls {
+                gap: 0;
+                margin-top: 0.75rem;
+            }
+
+            .film-indicators {
+                gap: 0.35rem;
+                margin: 0;
+            }
+
+            .film-indicator {
+                width: 7px;
+                height: 7px;
+            }
+            
+            footer {
+                padding: 2.5rem 0.75rem 1rem;
+            }
+        }
 
         /* Touch-friendly improvements */
         @media (hover: none) and (pointer: coarse) {
@@ -2716,6 +3948,39 @@
 
             .service-card:active {
                 transform: scale(0.99);
+            }
+
+            /* Films - always show info on touch devices */
+            .film-info {
+                opacity: 1;
+            }
+
+            .film-play-overlay {
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+            }
+
+            .play-button:active {
+                transform: scale(0.95);
+            }
+
+            .film-indicator:active {
+                transform: scale(1.3);
+            }
+
+            /* Testimonials - touch optimizations */
+            .testimonial-nav button:active {
+                transform: scale(0.95);
+                background: var(--gold);
+                border-color: var(--gold);
+            }
+
+            .testimonial-nav button:active svg {
+                stroke: var(--charcoal);
+            }
+
+            /* Swipe hint for testimonials on mobile */
+            .testimonials-slider {
+                touch-action: pan-x;
             }
         }
 
@@ -2939,109 +4204,16 @@
     </div>
 
     <!-- Why Choose Us -->
-    <section class="why-section">
+    <section class="why-section" id="whyChooseUs">
         <div class="section-container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-label">The WeddingClickz Difference</span>
-                <h2 class="section-title">Why Couples <em>Choose Us</em></h2>
-                <p class="section-subtitle">Trusted by discerning couples worldwide for destination weddings, grand celebrations, and intimate ceremonies.</p>
+                <span class="section-label" id="whySectionLabel">The WeddingClickz Difference</span>
+                <h2 class="section-title" id="whySectionTitle">Why Couples <em>Choose Us</em></h2>
+                <p class="section-subtitle" id="whySectionSubtitle">Trusted by discerning couples worldwide for destination weddings, grand celebrations, and intimate ceremonies.</p>
             </div>
 
-            <div class="why-grid">
-                <!-- Featured Card -->
-                <div class="why-card featured" data-aos="fade-right" data-aos-delay="100">
-                    <div class="why-card-header">
-                        <div class="why-icon">
-                            <svg viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                            </svg>
-                        </div>
-                        <h3>Destination Specialists</h3>
-                    </div>
-                    <p>From the palaces of Rajasthan to the beaches of Bali, we've captured love stories across multiple countries. Our international team travels worldwide with white-glove concierge service—dedicated project manager, priority editing, and same-day preview delivery.</p>
-                    <div class="destination-tags">
-                        <span class="destination-tag">
-                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            India
-                        </span>
-                        <span class="destination-tag">
-                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            Dubai
-                        </span>
-                        <span class="destination-tag">
-                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            Bali
-                        </span>
-                        <span class="destination-tag">
-                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            Thailand
-                        </span>
-                        <span class="destination-tag">
-                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            Europe
-                        </span>
-                    </div>
-                    <span class="why-highlight">Worldwide Coverage + Concierge Service →</span>
-                </div>
-
-                <div class="why-card" data-aos="fade-up" data-aos-delay="150">
-                    <div class="why-card-header">
-                        <div class="why-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                                <line x1="12" y1="22.08" x2="12" y2="12"/>
-                            </svg>
-                        </div>
-                        <h3>Luxury Deliverables</h3>
-                    </div>
-                    <p>Handcrafted Italian leather albums, 4K cinematic films, and private cloud galleries. Your memories presented with the elegance they deserve.</p>
-                    <span class="why-highlight">Italian Craftsmanship →</span>
-                </div>
-
-                <div class="why-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="why-card-header">
-                        <div class="why-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                                <circle cx="12" cy="13" r="4"/>
-                            </svg>
-                        </div>
-                        <h3>Cinematic Excellence</h3>
-                    </div>
-                    <p>Hollywood-grade equipment meets artistic vision. 8K cinema cameras, drone aerials, and precision lighting for magazine-worthy results.</p>
-                    <span class="why-highlight">8K Cinema Quality →</span>
-                </div>
-
-                <div class="why-card" data-aos="fade-up" data-aos-delay="250">
-                    <div class="why-card-header">
-                        <div class="why-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                        </div>
-                        <h3>Dedicated Team</h3>
-                    </div>
-                    <p>Up to 15 specialists for grand weddings—lead photographers, videographers, drone operators, and lighting experts working in harmony.</p>
-                    <span class="why-highlight">15+ Member Crews →</span>
-                </div>
-
-                <div class="why-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="why-card-header">
-                        <div class="why-icon">
-                            <svg viewBox="0 0 24 24">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                            </svg>
-                        </div>
-                        <h3>Industry Recognition</h3>
-                    </div>
-                    <p>Featured in Vogue, Harper's Bazaar, and international wedding publications. Award-winning artistry trusted by celebrities and influencers.</p>
-                    <span class="why-highlight">As Seen in Vogue →</span>
-                </div>
+            <div class="why-grid" id="whyGrid">
+                <!-- Dynamic cards will be loaded here -->
             </div>
         </div>
     </section>
@@ -3083,9 +4255,24 @@
                     </svg>
                 </button>
 
-                <!-- Carousel Indicators -->
-                <div class="film-indicators" id="filmIndicators">
-                    <!-- Dynamic indicators loaded here -->
+                <!-- Mobile Navigation Controls (arrows + indicators together) -->
+                <div class="film-nav-controls">
+                    <button class="film-nav-arrow-mobile film-nav-prev-mobile" id="filmPrevBtnMobile" aria-label="Previous film">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="film-indicators" id="filmIndicators">
+                        <!-- Dynamic indicators loaded here -->
+                    </div>
+                    
+                    <button class="film-nav-arrow-mobile film-nav-next-mobile" id="filmNextBtnMobile" aria-label="Next film">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -3156,21 +4343,23 @@
         <div class="section-container">
             <div class="about-grid">
                 <div class="about-image" data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop" alt="Our Team">
+                    <img id="aboutCoverImage" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop" alt="Our Team">
                     <div class="about-image-badge">
-                        <div class="number">500+</div>
-                        <span>Weddings Captured</span>
+                        <div class="number" id="aboutBadgeValue">500+</div>
+                        <span id="aboutBadgeLabel">Weddings Captured</span>
                     </div>
                 </div>
 
                 <div class="about-content" data-aos="fade-left">
-                    <span class="section-label">Our Story</span>
-                    <h2>Passionate About <em>Capturing Love</em></h2>
-                    <p>Founded with a vision to elevate wedding photography and cinematography to an art form, WeddingClickz has become synonymous with luxury and excellence in the industry.</p>
-                    <p>Our team of talented photographers and filmmakers brings together diverse creative backgrounds, united by a shared passion for storytelling. We believe every love story deserves to be told with beauty, authenticity, and emotion.</p>
-                    <p>From intimate ceremonies to grand celebrations, we approach each wedding with fresh eyes and a commitment to capturing the unique essence of every couple.</p>
+                    <span class="section-label" id="aboutSectionLabel">Our Story</span>
+                    <h2 id="aboutHeadline">Passionate About <em>Capturing Love</em></h2>
+                    <div id="aboutParagraphs">
+                        <p>Founded with a vision to elevate wedding photography and cinematography to an art form, WeddingClickz has become synonymous with luxury and excellence in the industry.</p>
+                        <p>Our team of talented photographers and filmmakers brings together diverse creative backgrounds, united by a shared passion for storytelling. We believe every love story deserves to be told with beauty, authenticity, and emotion.</p>
+                        <p>From intimate ceremonies to grand celebrations, we approach each wedding with fresh eyes and a commitment to capturing the unique essence of every couple.</p>
+                    </div>
 
-                    <div class="about-stats">
+                    <div class="about-stats" id="aboutStatsContainer">
                         <div class="stat-item">
                             <div class="stat-number">12+</div>
                             <div class="stat-label">Years Experience</div>
@@ -3201,19 +4390,18 @@
             <div class="contact-grid">
                 <div class="contact-info" data-aos="fade-right">
                     <h3>Let's Connect</h3>
-                    <p>Whether you're planning an intimate gathering or a grand celebration, we're here to bring your vision to life. Reach out to schedule a consultation.</p>
+                    <p>At WeddingClickz Photography, we believe that every wedding is a story waiting to be told—authentically, artistically, and with heart.</p>
 
                     <div class="contact-details">
                         <div class="contact-item">
                             <div class="contact-item-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                                 </svg>
                             </div>
                             <div class="contact-item-content">
-                                <h4>Studio Location</h4>
-                                <span>Mumbai, Maharashtra, India</span>
+                                <h4>Call Us</h4>
+                                <a href="tel:+919740222927">+91 97402 22927</a>
                             </div>
                         </div>
 
@@ -3226,19 +4414,20 @@
                             </div>
                             <div class="contact-item-content">
                                 <h4>Email Us</h4>
-                                <a href="mailto:hello@weddingclickz.com">hello@weddingclickz.com</a>
+                                <a href="mailto:info.weddingclickz@gmail.com">info.weddingclickz@gmail.com</a>
                             </div>
                         </div>
 
                         <div class="contact-item">
                             <div class="contact-item-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
                                 </svg>
                             </div>
                             <div class="contact-item-content">
-                                <h4>Call Us</h4>
-                                <a href="tel:+919876543210">+91 98765 43210</a>
+                                <h4>Studio Location</h4>
+                                <span>2nd floor, 47th Cross Rd, 5th Block,<br>TMC Layout, 1st Phase, Jayanagar,<br>Bengaluru, Karnataka 560041</span>
                             </div>
                         </div>
                     </div>
@@ -3345,7 +4534,11 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>Wedding<span>Clickz</span></h3>
-                    <p>Crafting timeless memories through the art of luxury wedding photography and cinematography. Every frame tells a story of love.</p>
+                    <p>At WeddingClickz Photography, we believe that every wedding is a story waiting to be told—authentically, artistically, and with heart.</p>
+                    <div class="footer-contact-inline">
+                        <a href="tel:+919740222927"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+91 97402 22927</a>
+                        <a href="mailto:info.weddingclickz@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info.weddingclickz@gmail.com</a>
+                    </div>
                     <div class="footer-social">
                         <a href="#" aria-label="Instagram">
                             <svg viewBox="0 0 24 24">
@@ -3402,10 +4595,9 @@
             </div>
 
             <div class="footer-bottom">
-                <p class="footer-copyright">© 2026 WeddingClickz. All rights reserved. Crafted with love.</p>
+                <p class="footer-copyright">© 2026 WeddingClickz Photography. All rights reserved.</p>
                 <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+                    <span class="recaptcha-notice">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.</span>
                 </div>
             </div>
         </div>
@@ -3501,19 +4693,11 @@
             }
             
             grid.innerHTML = entries.map((entry, index) => `
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}" onclick="${entry.galleryImages && entry.galleryImages.length > 0 ? `openGalleryLightbox('${entry._id}')` : ''}" style="${entry.galleryImages && entry.galleryImages.length > 0 ? 'cursor: pointer;' : ''}">
                     <img src="${entry.coverImageUrl}" alt="${entry.coupleName}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop'">
                     <div class="gallery-overlay">
                         <h4>${entry.coupleName}</h4>
                         <span>${entry.weddingPlace}</span>
-                        ${entry.galleryImages && entry.galleryImages.length > 0 ? `
-                            <button class="gallery-view-btn" onclick="openGalleryLightbox('${entry._id}')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                                View Gallery (${entry.galleryImages.length})
-                            </button>
-                        ` : ''}
                     </div>
                 </div>
             `).join('');
@@ -3789,28 +4973,31 @@
         function setupFilmNavigation() {
             const prevBtn = document.getElementById('filmPrevBtn');
             const nextBtn = document.getElementById('filmNextBtn');
+            const prevBtnMobile = document.getElementById('filmPrevBtnMobile');
+            const nextBtnMobile = document.getElementById('filmNextBtnMobile');
             
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    if (currentFilmIndex > 0) {
-                        currentFilmIndex--;
-                        renderCurrentFilm();
-                        updateFilmNavButtons();
-                        updateFilmIndicators();
-                    }
-                });
-            }
+            const handlePrev = () => {
+                if (currentFilmIndex > 0) {
+                    currentFilmIndex--;
+                    renderCurrentFilm();
+                    updateFilmNavButtons();
+                    updateFilmIndicators();
+                }
+            };
             
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    if (currentFilmIndex < filmsData.length - 1) {
-                        currentFilmIndex++;
-                        renderCurrentFilm();
-                        updateFilmNavButtons();
-                        updateFilmIndicators();
-                    }
-                });
-            }
+            const handleNext = () => {
+                if (currentFilmIndex < filmsData.length - 1) {
+                    currentFilmIndex++;
+                    renderCurrentFilm();
+                    updateFilmNavButtons();
+                    updateFilmIndicators();
+                }
+            };
+            
+            if (prevBtn) prevBtn.addEventListener('click', handlePrev);
+            if (nextBtn) nextBtn.addEventListener('click', handleNext);
+            if (prevBtnMobile) prevBtnMobile.addEventListener('click', handlePrev);
+            if (nextBtnMobile) nextBtnMobile.addEventListener('click', handleNext);
         }
         
         function goToFilm(index) {
@@ -3825,15 +5012,36 @@
         function updateFilmNavButtons() {
             const prevBtn = document.getElementById('filmPrevBtn');
             const nextBtn = document.getElementById('filmNextBtn');
+            const prevBtnMobile = document.getElementById('filmPrevBtnMobile');
+            const nextBtnMobile = document.getElementById('filmNextBtnMobile');
+            const navControls = document.querySelector('.film-nav-controls');
+            
+            const isFirst = currentFilmIndex === 0;
+            const isLast = currentFilmIndex === filmsData.length - 1;
+            const hideNav = filmsData.length <= 1;
             
             if (prevBtn) {
-                prevBtn.disabled = currentFilmIndex === 0;
-                prevBtn.style.display = filmsData.length <= 1 ? 'none' : 'flex';
+                prevBtn.disabled = isFirst;
+                prevBtn.style.display = hideNav ? 'none' : 'flex';
             }
             
             if (nextBtn) {
-                nextBtn.disabled = currentFilmIndex === filmsData.length - 1;
-                nextBtn.style.display = filmsData.length <= 1 ? 'none' : 'flex';
+                nextBtn.disabled = isLast;
+                nextBtn.style.display = hideNav ? 'none' : 'flex';
+            }
+            
+            if (prevBtnMobile) {
+                prevBtnMobile.disabled = isFirst;
+                prevBtnMobile.style.opacity = isFirst ? '0.4' : '1';
+            }
+            
+            if (nextBtnMobile) {
+                nextBtnMobile.disabled = isLast;
+                nextBtnMobile.style.opacity = isLast ? '0.4' : '1';
+            }
+            
+            if (navControls) {
+                navControls.style.display = hideNav ? 'none' : '';
             }
         }
         
@@ -4002,12 +5210,224 @@
             }
         }
         
+        // ==========================================
+        // Why Choose Us Content
+        // ==========================================
+        
+        // Load About/Our Story content
+        async function loadAboutContent() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/website/about`);
+                const result = await response.json();
+                
+                if (result.success && result.data && result.data.about) {
+                    const about = result.data.about;
+                    
+                    // Update section label
+                    if (about.sectionLabel) {
+                        const labelEl = document.getElementById('aboutSectionLabel');
+                        if (labelEl) labelEl.textContent = about.sectionLabel;
+                    }
+                    
+                    // Update headline - wrap last two words in <em>
+                    if (about.headline) {
+                        const headlineEl = document.getElementById('aboutHeadline');
+                        if (headlineEl) {
+                            const words = about.headline.split(' ');
+                            if (words.length >= 2) {
+                                const lastTwo = words.slice(-2).join(' ');
+                                const rest = words.slice(0, -2).join(' ');
+                                headlineEl.innerHTML = rest ? `${rest} <em>${lastTwo}</em>` : `<em>${lastTwo}</em>`;
+                            } else {
+                                headlineEl.textContent = about.headline;
+                            }
+                        }
+                    }
+                    
+                    // Update paragraphs
+                    if (about.paragraphs && about.paragraphs.length > 0) {
+                        const paragraphsEl = document.getElementById('aboutParagraphs');
+                        if (paragraphsEl) {
+                            paragraphsEl.innerHTML = about.paragraphs.map(p => `<p>${p}</p>`).join('');
+                        }
+                    }
+                    
+                    // Update cover image
+                    if (about.coverImageUrl) {
+                        const imgEl = document.getElementById('aboutCoverImage');
+                        if (imgEl) imgEl.src = about.coverImageUrl;
+                    }
+                    
+                    // Update badge
+                    if (about.badgeValue) {
+                        const badgeValueEl = document.getElementById('aboutBadgeValue');
+                        if (badgeValueEl) badgeValueEl.textContent = about.badgeValue;
+                    }
+                    if (about.badgeLabel) {
+                        const badgeLabelEl = document.getElementById('aboutBadgeLabel');
+                        if (badgeLabelEl) badgeLabelEl.textContent = about.badgeLabel;
+                    }
+                    
+                    // Update stats if available
+                    if (about.stats && about.stats.length > 0) {
+                        const statsEl = document.getElementById('aboutStatsContainer');
+                        if (statsEl) {
+                            statsEl.innerHTML = about.stats.map(stat => `
+                                <div class="stat-item">
+                                    <div class="stat-number">${stat.value}${stat.suffix || ''}</div>
+                                    <div class="stat-label">${stat.label}</div>
+                                </div>
+                            `).join('');
+                        }
+                    }
+                }
+            } catch (error) {
+                console.log('Error loading About content:', error.message);
+            }
+        }
+
+        async function loadWhyChooseUsContent() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/website/whyChooseUs`);
+                const result = await response.json();
+                
+                if (result.success && result.data && result.data.whyChooseUs) {
+                    const wcu = result.data.whyChooseUs;
+                    
+                    // Update section header if custom values exist
+                    if (wcu.sectionLabel) {
+                        document.getElementById('whySectionLabel').textContent = wcu.sectionLabel;
+                    }
+                    if (wcu.sectionTitle) {
+                        // Parse title for emphasis
+                        const titleEl = document.getElementById('whySectionTitle');
+                        const titleParts = wcu.sectionTitle.split(' ');
+                        if (titleParts.length > 1) {
+                            const lastWord = titleParts.pop();
+                            titleEl.innerHTML = `${titleParts.join(' ')} <em>${lastWord}</em>`;
+                        } else {
+                            titleEl.textContent = wcu.sectionTitle;
+                        }
+                    }
+                    if (wcu.sectionSubtitle) {
+                        document.getElementById('whySectionSubtitle').textContent = wcu.sectionSubtitle;
+                    }
+                    
+                    // Render cards
+                    if (wcu.cards && wcu.cards.length > 0) {
+                        renderWhyChooseUsCards(wcu.cards);
+                    } else {
+                        renderDefaultWhyChooseUs();
+                    }
+                } else {
+                    renderDefaultWhyChooseUs();
+                }
+            } catch (error) {
+                console.log('Error loading Why Choose Us content:', error.message);
+                renderDefaultWhyChooseUs();
+            }
+        }
+        
+        function getWhyCardIcon(iconType) {
+            const icons = {
+                'globe': `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+                'luxury': `<svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
+                'camera': `<svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`,
+                'team': `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+                'star': `<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+            };
+            return icons[iconType] || icons['star'];
+        }
+        
+        function renderWhyChooseUsCards(cards) {
+            const grid = document.getElementById('whyGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = cards.map((card, index) => {
+                const isFeatured = card.isFeatured;
+                const delay = isFeatured ? 100 : (index + 1) * 50 + 100;
+                
+                return `
+                    <div class="why-card ${isFeatured ? 'featured' : ''}" data-aos="${isFeatured ? 'fade-right' : 'fade-up'}" data-aos-delay="${delay}">
+                        <div class="why-card-header">
+                            <div class="why-icon">
+                                ${getWhyCardIcon(card.iconType)}
+                            </div>
+                            <h3>${card.title}</h3>
+                        </div>
+                        <p>${card.description}</p>
+                        ${isFeatured && card.destinations && card.destinations.length > 0 ? `
+                            <div class="destination-tags">
+                                ${card.destinations.map(d => `
+                                    <span class="destination-tag">
+                                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                        ${d}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        ${card.highlight ? `<span class="why-highlight">${card.highlight}</span>` : ''}
+                    </div>
+                `;
+            }).join('');
+            
+            // Re-initialize AOS for new elements
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+        
+        function renderDefaultWhyChooseUs() {
+            const defaultCards = [
+                {
+                    title: 'Destination Specialists',
+                    description: 'From the palaces of Rajasthan to the beaches of Bali, we\'ve captured love stories across multiple countries. Our international team travels worldwide with white-glove concierge service.',
+                    iconType: 'globe',
+                    highlight: 'Worldwide Coverage + Concierge Service →',
+                    isFeatured: true,
+                    destinations: ['India', 'Dubai', 'Bali', 'Thailand', 'Europe']
+                },
+                {
+                    title: 'Luxury Deliverables',
+                    description: 'Handcrafted Italian leather albums, 4K cinematic films, and private cloud galleries. Your memories presented with the elegance they deserve.',
+                    iconType: 'luxury',
+                    highlight: 'Italian Craftsmanship →',
+                    isFeatured: false
+                },
+                {
+                    title: 'Cinematic Excellence',
+                    description: 'Hollywood-grade equipment meets artistic vision. 8K cinema cameras, drone aerials, and precision lighting for magazine-worthy results.',
+                    iconType: 'camera',
+                    highlight: '8K Cinema Quality →',
+                    isFeatured: false
+                },
+                {
+                    title: 'Dedicated Team',
+                    description: 'Up to 15 specialists for grand weddings—lead photographers, videographers, drone operators, and lighting experts working in harmony.',
+                    iconType: 'team',
+                    highlight: '15+ Member Crews →',
+                    isFeatured: false
+                },
+                {
+                    title: 'Industry Recognition',
+                    description: 'Featured in Vogue, Harper\'s Bazaar, and international wedding publications. Award-winning artistry trusted by celebrities and influencers.',
+                    iconType: 'star',
+                    highlight: 'As Seen in Vogue →',
+                    isFeatured: false
+                }
+            ];
+            
+            renderWhyChooseUsCards(defaultCards);
+        }
+        
         // Load home content on page load
         document.addEventListener('DOMContentLoaded', () => {
             loadHomeContent();
             loadArchivesContent();
             loadFilmsContent();
             loadServicesContent();
+            loadAboutContent();
+            loadWhyChooseUsContent();
         });
 
         // Preloader
