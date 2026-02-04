@@ -75,6 +75,19 @@
             transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
+        .preloader-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('Photo%20Grid%20for%20website%20.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25;
+            filter: grayscale(30%);
+        }
+
         .preloader.hidden {
             opacity: 0;
             visibility: hidden;
@@ -82,6 +95,8 @@
 
         .preloader-content {
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         .preloader-logo {
@@ -89,6 +104,7 @@
             font-size: 2.5rem;
             color: var(--white);
             margin-bottom: 1.5rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
         }
 
         .preloader-logo span {
@@ -101,12 +117,13 @@
             background: rgba(255, 255, 255, 0.2);
             border-radius: 2px;
             overflow: hidden;
+            margin: 0 auto;
         }
 
         .preloader-progress {
             height: 100%;
             background: var(--gold);
-            animation: preload 1.5s ease-in-out forwards;
+            animation: preload 2.4s ease-in-out forwards;
         }
 
         @keyframes preload {
@@ -272,12 +289,12 @@
         }
 
         .hero-logo img {
-            height: 100px;
+            height: 180px;
             width: auto;
         }
 
         .hero-logo h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--white);
             letter-spacing: 0.08em;
             font-weight: 400;
@@ -303,7 +320,7 @@
             }
 
             .hero-logo img {
-                height: 70px;
+                height: 130px;
             }
 
             .hero-logo h1 {
@@ -322,7 +339,7 @@
             }
 
             .hero-logo img {
-                height: 55px;
+                height: 100px;
             }
 
             .hero-logo h1 {
@@ -2528,7 +2545,7 @@
             }
             
             .hero-logo img {
-                height: 55px;
+                height: 150px;
             }
             
             .hero-logo h1 {
@@ -2560,7 +2577,7 @@
             }
             
             .hero-logo img {
-                height: 45px;
+                height: 120px;
             }
             
             .hero-logo h1 {
@@ -2590,7 +2607,7 @@
         /* Very short screens (some laptops with high taskbars) */
         @media (max-height: 650px) and (min-width: 769px) {
             .hero-logo img {
-                height: 40px;
+                height: 100px;
             }
             
             .hero-logo h1 {
@@ -2623,7 +2640,7 @@
             }
             
             .hero-logo img {
-                height: 35px;
+                height: 90px;
             }
             
             .hero-logo h1 {
@@ -4064,6 +4081,7 @@
 <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
+        <div class="preloader-bg"></div>
         <div class="preloader-content">
             <div class="preloader-logo">Wedding<span>Clickz</span></div>
             <div class="preloader-bar">
@@ -5434,7 +5452,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('preloader').classList.add('hidden');
-            }, 1500);
+            }, 2400);
         });
 
         // Header scroll effect - show after scrolling to Our Work section
