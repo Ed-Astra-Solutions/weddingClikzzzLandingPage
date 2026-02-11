@@ -2178,11 +2178,7 @@
         }
 
         .author-image {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--gold);
+            display: none;
         }
 
         .author-name {
@@ -2248,10 +2244,12 @@
 
         .about-image {
             position: relative;
+            max-width: 450px;
         }
 
         .about-image img {
             width: 100%;
+            height: auto;
             border-radius: 20px;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
         }
@@ -4792,7 +4790,7 @@
         <div class="section-container">
             <div class="about-grid">
                 <div class="about-image" data-aos="fade-right">
-                    <img id="aboutCoverImage" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop" alt="Our Team">
+                    <img id="aboutCoverImage" src="Photo%20Grid%20for%20website%20.jpeg" alt="Our Team">
                     <div class="about-image-badge">
                         <div class="number" id="aboutBadgeValue">500+</div>
                         <span id="aboutBadgeLabel">Weddings Captured</span>
@@ -5654,16 +5652,33 @@
         // Services Loading
         // ==========================================
         
+        // Store archive images for services
+        let serviceArchiveImages = [];
+        
         async function loadServicesContent() {
             const grid = document.getElementById('servicesGrid');
             if (!grid) return;
             
             try {
-                const response = await fetch(`${API_BASE_URL}/api/website/services`);
-                const result = await response.json();
+                // Fetch both services and archives in parallel
+                const [servicesResponse, archivesResponse] = await Promise.all([
+                    fetch(`${API_BASE_URL}/api/website/services`),
+                    fetch(`${API_BASE_URL}/api/website/archives`)
+                ]);
                 
-                if (result.success && result.data && result.data.services && result.data.services.entries) {
-                    const services = result.data.services.entries;
+                const servicesResult = await servicesResponse.json();
+                const archivesResult = await archivesResponse.json();
+                
+                // Extract first 3 archive cover images
+                if (archivesResult.success && archivesResult.data && archivesResult.data.archives && archivesResult.data.archives.entries) {
+                    serviceArchiveImages = archivesResult.data.archives.entries
+                        .slice(0, 3)
+                        .map(entry => entry.coverImageUrl)
+                        .filter(url => url); // Filter out any undefined URLs
+                }
+                
+                if (servicesResult.success && servicesResult.data && servicesResult.data.services && servicesResult.data.services.entries) {
+                    const services = servicesResult.data.services.entries;
                     if (services.length > 0) {
                         renderServicesGrid(services);
                     } else {
@@ -5682,10 +5697,14 @@
             const grid = document.getElementById('servicesGrid');
             if (!grid) return;
             
-            grid.innerHTML = services.map((service, index) => `
+            grid.innerHTML = services.map((service, index) => {
+                // Use archive image if available, otherwise fall back to service image
+                const imageUrl = serviceArchiveImages[index] || service.imageUrl || 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&h=400&fit=crop';
+                
+                return `
                 <div class="service-card" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
                     <div class="service-image">
-                        <img src="${service.imageUrl}" alt="${service.title}" onerror="this.src='https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&h=400&fit=crop'">
+                        <img src="${imageUrl}" alt="${service.title}" onerror="this.src='https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&h=400&fit=crop'">
                     </div>
                     <div class="service-content">
                         <span class="service-badge">${service.badge}</span>
@@ -5711,7 +5730,7 @@
                         </a>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
             
             // Re-initialize AOS for new elements
             if (typeof AOS !== 'undefined') {
@@ -5748,10 +5767,14 @@
                 }
             ];
             
-            grid.innerHTML = defaultServices.map((service, index) => `
+            grid.innerHTML = defaultServices.map((service, index) => {
+                // Use archive image if available, otherwise fall back to default image
+                const imageUrl = serviceArchiveImages[index] || service.image;
+                
+                return `
                 <div class="service-card" data-aos="fade-up" data-aos-delay="${(index + 1) * 100}">
                     <div class="service-image">
-                        <img src="${service.image}" alt="${service.title}">
+                        <img src="${imageUrl}" alt="${service.title}" onerror="this.src='${service.image}'">
                     </div>
                     <div class="service-content">
                         <span class="service-badge">${service.badge}</span>
@@ -5775,7 +5798,7 @@
                         </a>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
             
             // Re-initialize AOS for new elements
             if (typeof AOS !== 'undefined') {
@@ -5792,6 +5815,8 @@
             try {
                 const response = await fetch(`${API_BASE_URL}/api/website/about`);
                 const result = await response.json();
+                
+                // Keep using the local Photo Grid image - don't override it
                 
                 if (result.success && result.data && result.data.about) {
                     const about = result.data.about;
@@ -5825,11 +5850,7 @@
                         }
                     }
                     
-                    // Update cover image
-                    if (about.coverImageUrl) {
-                        const imgEl = document.getElementById('aboutCoverImage');
-                        if (imgEl) imgEl.src = about.coverImageUrl;
-                    }
+                    // Keep the local Photo Grid image - don't override with API image
                     
                     // Update badge
                     if (about.badgeValue) {
