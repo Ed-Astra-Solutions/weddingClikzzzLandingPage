@@ -1,0 +1,21 @@
+# WeddingClickz robots.txt
+# https://weddingclickz.com
+
+User-agent: *
+Allow: /
+Allow: /blog.html
+Allow: /sitemap.xml
+
+# Block API endpoints (served via subdomain but just in case)
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://weddingclickz.com/sitemap.xml
+
+# Crawl-delay for polite crawling
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
