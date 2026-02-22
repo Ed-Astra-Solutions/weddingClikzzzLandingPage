@@ -91,6 +91,7 @@
             background-position: center;
             opacity: 0.25;
             filter: grayscale(30%);
+            transition: background-image 0.3s ease;
         }
 
         .preloader.hidden {
@@ -4604,7 +4605,7 @@
 <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
-        <div class="preloader-bg"></div>
+        <div class="preloader-bg" id="preloaderBg"></div>
         <div class="preloader-content">
             <div class="preloader-logo">Wedding<span>Clickz</span></div>
             <div class="preloader-bar">
@@ -4612,6 +4613,19 @@
             </div>
         </div>
     </div>
+    <script>
+        // Apply cached preloader image immediately for instant display
+        (function() {
+            try {
+                var isMobile = window.innerWidth < 768;
+                var cachedUrl = localStorage.getItem(isMobile ? 'preloaderMobileUrl' : 'preloaderDesktopUrl');
+                if (cachedUrl) {
+                    var bg = document.getElementById('preloaderBg');
+                    if (bg) bg.style.backgroundImage = 'url(' + cachedUrl + ')';
+                }
+            } catch(e) {}
+        })();
+    </script>
 
     <!-- Header -->
     <header id="header">
@@ -5205,15 +5219,27 @@
                     
                     // Update hero tagline if available
                     if (homeData.home && homeData.home.hero) {
-                        const tagline = homeData.home.hero.tagline;
+                        const hero = homeData.home.hero;
+                        const tagline = hero.tagline;
                         const taglineEl = document.querySelector('.hero-tagline');
                         if (taglineEl && tagline) {
                             taglineEl.textContent = tagline;
                         }
                         
                         // Update film roll images
-                        if (homeData.home.hero.filmRollImages && homeData.home.hero.filmRollImages.length > 0) {
-                            renderFilmRollSlider(homeData.home.hero.filmRollImages);
+                        if (hero.filmRollImages && hero.filmRollImages.length > 0) {
+                            renderFilmRollSlider(hero.filmRollImages);
+                        }
+
+                        // Update preloader background image & cache for next visit
+                        const isMobile = window.innerWidth < 768;
+                        const preloaderUrl = isMobile ? hero.preloaderMobileImageUrl : hero.preloaderDesktopImageUrl;
+                        if (preloaderUrl) {
+                            const bg = document.getElementById('preloaderBg');
+                            if (bg) bg.style.backgroundImage = 'url(' + preloaderUrl + ')';
+                            try {
+                                localStorage.setItem(isMobile ? 'preloaderMobileUrl' : 'preloaderDesktopUrl', preloaderUrl);
+                            } catch(e) {}
                         }
                     }
                 }
