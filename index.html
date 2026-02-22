@@ -5896,10 +5896,12 @@
                 if (videoId) {
                     videoContainer.innerHTML = `
                         <iframe 
-                            src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&controls=1&playsinline=1&modestbranding=1&fs=1" 
                             frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" 
+                            allowfullscreen
+                            playsinline
+                            webkit-playsinline>
                         </iframe>
                     `;
                 }
@@ -5908,10 +5910,12 @@
                 if (videoId) {
                     videoContainer.innerHTML = `
                         <iframe 
-                            src="https://player.vimeo.com/video/${videoId}?autoplay=1" 
+                            src="https://player.vimeo.com/video/${videoId}?autoplay=1&controls=1&playsinline=1" 
                             frameborder="0" 
                             allow="autoplay; fullscreen; picture-in-picture" 
-                            allowfullscreen>
+                            allowfullscreen
+                            playsinline
+                            webkit-playsinline>
                         </iframe>
                     `;
                 }
@@ -5922,6 +5926,8 @@
                         controls 
                         autoplay 
                         playsinline
+                        webkit-playsinline
+                        controlslist="nodownload"
                         poster="${film.thumbnailUrl || ''}"
                         style="width: 100%; height: 100%; object-fit: contain; background: #000;"
                     >
