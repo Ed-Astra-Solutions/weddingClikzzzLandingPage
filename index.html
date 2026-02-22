@@ -3257,6 +3257,14 @@
             right: 0;
             padding: 3rem 2rem 2rem;
             text-align: center;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 5;
+        }
+
+        .film-info.hidden-for-playback {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         .film-info h3 {
@@ -5854,6 +5862,9 @@
             
             isVideoPlaying = false;
             
+            // Restore the film-info overlay
+            if (filmInfo) filmInfo.classList.remove('hidden-for-playback');
+            
             // Determine thumbnail URL
             const thumbnailUrl = film.thumbnailUrl || 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=675&fit=crop';
             
@@ -5889,6 +5900,10 @@
         function playFilmVideo(film) {
             const videoContainer = document.getElementById('filmVideoContainer');
             isVideoPlaying = true;
+            
+            // Hide the film-info overlay so it doesn't block video controls
+            const filmInfoEl = document.getElementById('filmInfo');
+            if (filmInfoEl) filmInfoEl.classList.add('hidden-for-playback');
             
             // Check video source: YouTube, Vimeo, or S3 video
             if (film.youtubeUrl) {
