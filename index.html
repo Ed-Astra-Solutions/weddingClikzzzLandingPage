@@ -747,9 +747,9 @@
         /* Phone portrait - gallery sizing */
         @media (max-width: 768px) and (orientation: portrait) {
             .hero {
-                --gallery-card-width: clamp(200px, 45vw, 280px);
-                --gallery-card-height: clamp(280px, 45vh, 380px);
-                --gallery-gap: clamp(0.75rem, 2vw, 1rem);
+                --gallery-card-width: clamp(140px, 30vw, 200px);
+                --gallery-card-height: clamp(200px, 40vh, 300px);
+                --gallery-gap: clamp(0.5rem, 1.5vw, 0.75rem);
                 --hero-spacing: clamp(2rem, 6vmin, 4rem);
             }
             
@@ -759,15 +759,15 @@
             
             .film-roll {
                 padding: 0.5rem 0;
-                animation-duration: 20s;
+                animation-duration: 12s;
             }
         }
 
         /* Smaller phones */
         @media (max-width: 480px) and (orientation: portrait) {
             .hero {
-                --gallery-card-width: clamp(180px, 50vw, 250px);
-                --gallery-card-height: clamp(260px, 42vh, 350px);
+                --gallery-card-width: clamp(120px, 32vw, 180px);
+                --gallery-card-height: clamp(180px, 35vh, 270px);
                 --hero-spacing: clamp(1.5rem, 5vmin, 3rem);
             }
             
@@ -777,7 +777,7 @@
             
             .film-roll {
                 padding: 0.25rem 0;
-                animation-duration: 15s;
+                animation-duration: 10s;
             }
         }
 
@@ -3379,6 +3379,270 @@
             margin-bottom: 1rem;
         }
 
+        /* Pre-Wedding Shoot Section */
+        .prewedding-section {
+            background: var(--white);
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .prewedding-carousel-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+        }
+
+        .prewedding-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--gold);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            z-index: 10;
+        }
+
+        .prewedding-nav-arrow:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .prewedding-nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .prewedding-nav-arrow svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+        }
+
+        .prewedding-nav-prev { left: -10px; }
+        .prewedding-nav-next { right: -10px; }
+
+        .prewedding-showcase {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--charcoal);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .prewedding-image-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: var(--charcoal);
+        }
+
+        .prewedding-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.4s ease;
+        }
+
+        .prewedding-info {
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+
+        .prewedding-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+
+        .prewedding-info .prewedding-couple {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .prewedding-info .prewedding-location {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+
+        .prewedding-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        .prewedding-loading-spinner {
+            width: 32px;
+            height: 32px;
+            border: 2px solid rgba(201, 168, 124, 0.3);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .prewedding-nav-controls {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .prewedding-nav-arrow-mobile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .prewedding-nav-arrow-mobile:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .prewedding-nav-arrow-mobile:active {
+            transform: scale(0.95);
+        }
+
+        .prewedding-nav-arrow-mobile svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+        }
+
+        .prewedding-indicators {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .prewedding-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .prewedding-indicator:hover {
+            background: var(--gold-light);
+        }
+
+        .prewedding-indicator.active {
+            background: var(--gold);
+            transform: scale(1.2);
+        }
+
+        .prewedding-gallery-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem auto 0;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold-dark);
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .prewedding-gallery-btn:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .prewedding-no-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .prewedding-no-content svg {
+            width: 60px;
+            height: 60px;
+            stroke: rgba(201, 168, 124, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .prewedding-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .prewedding-lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 992px) {
+            .prewedding-carousel-wrapper { padding: 0 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .prewedding-section { padding: 4rem 1.5rem; }
+            .prewedding-carousel-wrapper { padding: 0; }
+            .prewedding-nav-arrow { display: none; }
+            .prewedding-nav-controls { display: flex; }
+            .prewedding-image-container { aspect-ratio: 3/4; }
+        }
+
+        @media (max-width: 480px) {
+            .prewedding-section { padding: 3rem 1rem; }
+            .prewedding-info h3 { font-size: 1.25rem; }
+            .prewedding-info .prewedding-couple { font-size: 1rem; }
+        }
+
         /* Responsive Design */
         
         /* Width-based responsive - 1200px */
@@ -4953,52 +5217,52 @@
             <div class="film-roll" id="filmRollSlider">
                 <!-- First set of images -->
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Sarah & Michael</span></div>
                 </div>
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Priya & Arjun</span></div>
                 </div>
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Ananya & Vikram</span></div>
                 </div>
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Meera & Rohan</span></div>
                 </div>
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Kavya & Aditya</span></div>
                 </div>
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Neha & Rahul</span></div>
                 </div>
                 <!-- Duplicate set for seamless loop -->
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Sarah & Michael</span></div>
                 </div>
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Priya & Arjun</span></div>
                 </div>
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Ananya & Vikram</span></div>
                 </div>
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Meera & Rohan</span></div>
                 </div>
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Kavya & Aditya</span></div>
                 </div>
                 <div class="film-frame">
-                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&h=400&fit=crop" alt="Wedding" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&h=400&fit=crop" alt="Wedding" loading="eager">
                     <div class="film-frame-overlay"><span>Neha & Rahul</span></div>
                 </div>
             </div>
@@ -5133,6 +5397,89 @@
             </div>
         </div>
     </section>
+
+    <!-- Pre-Wedding Shoot Section -->
+    <section class="prewedding-section" id="prewedding" aria-label="Pre-Wedding Photography Shoots">
+        <div class="section-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">Love Before the Vows</span>
+                <h2 class="section-title">Pre-Wedding <em>Shoots</em></h2>
+                <p class="section-subtitle">Capturing the romance and excitement before the big day — intimate, creative, and unforgettable.</p>
+            </div>
+
+            <div class="prewedding-carousel-wrapper" data-aos="fade-up" data-aos-delay="200">
+                <!-- Left Arrow -->
+                <button class="prewedding-nav-arrow prewedding-nav-prev" id="preweddingPrevBtn" aria-label="Previous shoot">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+
+                <div class="prewedding-showcase" id="preweddingShowcase">
+                    <div class="prewedding-image-container" id="preweddingImageContainer">
+                        <!-- Dynamic content loaded here -->
+                        <div class="prewedding-loading">
+                            <div class="prewedding-loading-spinner"></div>
+                            <span>Loading shoots...</span>
+                        </div>
+                    </div>
+                    <div class="prewedding-info" id="preweddingInfo">
+                        <!-- Shoot details loaded here -->
+                    </div>
+                </div>
+
+                <!-- Right Arrow -->
+                <button class="prewedding-nav-arrow prewedding-nav-next" id="preweddingNextBtn" aria-label="Next shoot">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+
+                <!-- Mobile Navigation Controls -->
+                <div class="prewedding-nav-controls">
+                    <button class="prewedding-nav-arrow-mobile prewedding-nav-prev-mobile" id="preweddingPrevBtnMobile" aria-label="Previous shoot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="prewedding-indicators" id="preweddingIndicators">
+                        <!-- Dynamic indicators loaded here -->
+                    </div>
+                    
+                    <button class="prewedding-nav-arrow-mobile prewedding-nav-next-mobile" id="preweddingNextBtnMobile" aria-label="Next shoot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Gallery View Button -->
+                <button class="prewedding-gallery-btn" id="preweddingGalleryBtn" style="display:none;" onclick="openPreWeddingGallery()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;">
+                        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+                    </svg>
+                    View Gallery
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Wedding Gallery Lightbox -->
+    <div class="prewedding-lightbox" id="preweddingLightbox">
+        <button class="lightbox-close" onclick="closePreWeddingLightbox()">&times;</button>
+        <div class="lightbox-header">
+            <div class="lightbox-header-content">
+                <h3 id="preweddingLightboxTitle">Gallery</h3>
+                <p id="preweddingLightboxSubtitle"></p>
+            </div>
+        </div>
+        <div class="lightbox-content-wrapper">
+            <div class="lightbox-gallery" id="preweddingLightboxGallery">
+            </div>
+        </div>
+    </div>
 
     <!-- Services Section -->
     <section class="services-section" id="services" aria-label="Wedding Photography and Cinematography Services">
@@ -5809,7 +6156,7 @@
             // Generate film frames HTML
             const framesHtml = images.map(img => `
                 <div class="film-frame">
-                    <img src="${img.imageUrl}" alt="${img.altText || 'Wedding'}" loading="lazy">
+                    <img src="${img.imageUrl}" alt="${img.altText || 'Wedding'}" loading="eager">
                     ${img.caption ? `<div class="film-frame-overlay"><span>${img.caption}</span></div>` : ''}
                 </div>
             `).join('');
@@ -6096,6 +6443,231 @@
             const prevBtn = document.getElementById('filmPrevBtn');
             const nextBtn = document.getElementById('filmNextBtn');
             const indicators = document.getElementById('filmIndicators');
+            
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+            if (indicators) indicators.innerHTML = '';
+        }
+        
+        // ==========================================
+        // Pre-Wedding Shoot Carousel
+        // ==========================================
+        
+        let preWeddingData = [];
+        let currentPreWeddingIndex = 0;
+        let currentPreWeddingGalleryImages = [];
+        
+        async function loadPreWeddingContent() {
+            if (_apiCache.preWeddingShoot) { applyPreWeddingContent(_apiCache.preWeddingShoot); return; }
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/website/preWeddingShoot`);
+                const result = await response.json();
+                if (result.success && result.data) {
+                    _apiCache.preWeddingShoot = result.data;
+                    applyPreWeddingContent(result.data);
+                } else { renderNoPreWedding(); }
+            } catch (error) {
+                console.log('Error loading pre-wedding shoots:', error.message);
+                renderNoPreWedding();
+            }
+        }
+        
+        function renderPreWeddingCarousel() {
+            if (preWeddingData.length === 0) {
+                renderNoPreWedding();
+                return;
+            }
+            renderCurrentPreWedding();
+            renderPreWeddingIndicators();
+            updatePreWeddingNavButtons();
+        }
+        
+        function renderCurrentPreWedding() {
+            const imageContainer = document.getElementById('preweddingImageContainer');
+            const preweddingInfo = document.getElementById('preweddingInfo');
+            const galleryBtn = document.getElementById('preweddingGalleryBtn');
+            const shoot = preWeddingData[currentPreWeddingIndex];
+            
+            if (!shoot) return;
+            
+            const coverUrl = shoot.coverImageUrl || 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=900&fit=crop';
+            
+            imageContainer.innerHTML = `
+                <img src="${coverUrl}" alt="${shoot.coupleName || 'Pre-Wedding Shoot'}" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=900&fit=crop'">
+            `;
+            
+            preweddingInfo.innerHTML = `
+                ${shoot.coupleName ? `<p class="prewedding-couple">${shoot.coupleName}</p>` : ''}
+                ${shoot.location ? `<p class="prewedding-location">${shoot.location}</p>` : ''}
+            `;
+            
+            // Show gallery button if this shoot has gallery images
+            if (galleryBtn) {
+                if (shoot.galleryImages && shoot.galleryImages.length > 0) {
+                    galleryBtn.style.display = 'flex';
+                    currentPreWeddingGalleryImages = shoot.galleryImages;
+                } else {
+                    galleryBtn.style.display = 'none';
+                    currentPreWeddingGalleryImages = [];
+                }
+            }
+        }
+        
+        function renderPreWeddingIndicators() {
+            const indicatorsContainer = document.getElementById('preweddingIndicators');
+            if (!indicatorsContainer || preWeddingData.length <= 1) {
+                if (indicatorsContainer) indicatorsContainer.innerHTML = '';
+                return;
+            }
+            
+            indicatorsContainer.innerHTML = preWeddingData.map((_, index) => `
+                <button 
+                    class="prewedding-indicator ${index === currentPreWeddingIndex ? 'active' : ''}" 
+                    data-index="${index}"
+                    aria-label="Go to shoot ${index + 1}"
+                ></button>
+            `).join('');
+            
+            indicatorsContainer.querySelectorAll('.prewedding-indicator').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const index = parseInt(btn.dataset.index);
+                    goToPreWedding(index);
+                });
+            });
+        }
+        
+        function setupPreWeddingNavigation() {
+            const prevBtn = document.getElementById('preweddingPrevBtn');
+            const nextBtn = document.getElementById('preweddingNextBtn');
+            const prevBtnMobile = document.getElementById('preweddingPrevBtnMobile');
+            const nextBtnMobile = document.getElementById('preweddingNextBtnMobile');
+            
+            const handlePrev = () => {
+                if (currentPreWeddingIndex > 0) {
+                    currentPreWeddingIndex--;
+                    renderCurrentPreWedding();
+                    updatePreWeddingNavButtons();
+                    updatePreWeddingIndicators();
+                }
+            };
+            
+            const handleNext = () => {
+                if (currentPreWeddingIndex < preWeddingData.length - 1) {
+                    currentPreWeddingIndex++;
+                    renderCurrentPreWedding();
+                    updatePreWeddingNavButtons();
+                    updatePreWeddingIndicators();
+                }
+            };
+            
+            if (prevBtn) prevBtn.addEventListener('click', handlePrev);
+            if (nextBtn) nextBtn.addEventListener('click', handleNext);
+            if (prevBtnMobile) prevBtnMobile.addEventListener('click', handlePrev);
+            if (nextBtnMobile) nextBtnMobile.addEventListener('click', handleNext);
+        }
+        
+        function goToPreWedding(index) {
+            if (index >= 0 && index < preWeddingData.length && index !== currentPreWeddingIndex) {
+                currentPreWeddingIndex = index;
+                renderCurrentPreWedding();
+                updatePreWeddingNavButtons();
+                updatePreWeddingIndicators();
+            }
+        }
+        
+        function updatePreWeddingNavButtons() {
+            const prevBtn = document.getElementById('preweddingPrevBtn');
+            const nextBtn = document.getElementById('preweddingNextBtn');
+            const prevBtnMobile = document.getElementById('preweddingPrevBtnMobile');
+            const nextBtnMobile = document.getElementById('preweddingNextBtnMobile');
+            const navControls = document.querySelector('.prewedding-nav-controls');
+            
+            const isFirst = currentPreWeddingIndex === 0;
+            const isLast = currentPreWeddingIndex === preWeddingData.length - 1;
+            const hideNav = preWeddingData.length <= 1;
+            
+            if (prevBtn) {
+                prevBtn.disabled = isFirst;
+                prevBtn.style.display = hideNav ? 'none' : 'flex';
+            }
+            if (nextBtn) {
+                nextBtn.disabled = isLast;
+                nextBtn.style.display = hideNav ? 'none' : 'flex';
+            }
+            if (prevBtnMobile) {
+                prevBtnMobile.disabled = isFirst;
+                prevBtnMobile.style.opacity = isFirst ? '0.4' : '1';
+            }
+            if (nextBtnMobile) {
+                nextBtnMobile.disabled = isLast;
+                nextBtnMobile.style.opacity = isLast ? '0.4' : '1';
+            }
+            if (navControls) {
+                navControls.style.display = hideNav ? 'none' : '';
+            }
+        }
+        
+        function updatePreWeddingIndicators() {
+            const indicators = document.querySelectorAll('.prewedding-indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentPreWeddingIndex);
+            });
+        }
+        
+        function openPreWeddingGallery() {
+            const shoot = preWeddingData[currentPreWeddingIndex];
+            if (!shoot || !shoot.galleryImages || shoot.galleryImages.length === 0) return;
+            
+            const lightbox = document.getElementById('preweddingLightbox');
+            const gallery = document.getElementById('preweddingLightboxGallery');
+            const title = document.getElementById('preweddingLightboxTitle');
+            const subtitle = document.getElementById('preweddingLightboxSubtitle');
+            
+            if (title) title.textContent = shoot.coupleName || 'Gallery';
+            if (subtitle) subtitle.textContent = shoot.location || '';
+            
+            gallery.innerHTML = shoot.galleryImages.map((img, index) => `
+                <div class="lightbox-gallery-item ${index === 0 ? 'size-featured' : index % 5 === 0 ? 'size-tall' : ''}">
+                    <img src="${img.imageUrl}" alt="${img.caption || shoot.coupleName || 'Pre-wedding photo'}" loading="lazy">
+                    <div class="zoom-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </div>
+                </div>
+            `).join('');
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePreWeddingLightbox() {
+            document.getElementById('preweddingLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function renderNoPreWedding() {
+            const imageContainer = document.getElementById('preweddingImageContainer');
+            const preweddingInfo = document.getElementById('preweddingInfo');
+            const galleryBtn = document.getElementById('preweddingGalleryBtn');
+            
+            imageContainer.innerHTML = `
+                <div class="prewedding-no-content">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <p>Pre-wedding shoots coming soon</p>
+                </div>
+            `;
+            
+            if (preweddingInfo) preweddingInfo.innerHTML = '';
+            if (galleryBtn) galleryBtn.style.display = 'none';
+            
+            const prevBtn = document.getElementById('preweddingPrevBtn');
+            const nextBtn = document.getElementById('preweddingNextBtn');
+            const indicators = document.getElementById('preweddingIndicators');
             
             if (prevBtn) prevBtn.style.display = 'none';
             if (nextBtn) nextBtn.style.display = 'none';
@@ -6432,9 +7004,9 @@
             return null;
         }
 
-        // Fire ALL 7 API calls in parallel immediately
+        // Fire ALL API calls in parallel immediately
         (function prefetchAll() {
-            const sections = ['home','archives','films','services','testimonials','about','whyChooseUs'];
+            const sections = ['home','archives','films','preWeddingShoot','services','testimonials','about','whyChooseUs'];
             sections.forEach(s => fetchSection(s).then(data => {
                 if (s === 'home' && data) { applyHomeContent(data); _heroReady = true; checkCriticalReady(); }
                 if (s === 'archives' && data) { applyArchivesContent(data); _archivesReady = true; checkCriticalReady(); }
@@ -6479,6 +7051,7 @@
             const sectionMap = {
                 'whyChooseUs': { el: '#whyChooseUs', apply: () => { const d = _apiCache.whyChooseUs; if (d) applyWhyChooseUs(d); else loadWhyChooseUsContent(); } },
                 'films':       { el: '#films',       apply: () => { const d = _apiCache.films; if (d) applyFilmsContent(d); else loadFilmsContent(); } },
+                'preWeddingShoot': { el: '#prewedding', apply: () => { const d = _apiCache.preWeddingShoot; if (d) applyPreWeddingContent(d); else loadPreWeddingContent(); } },
                 'services':    { el: '#services',    apply: () => { const d = _apiCache.services; if (d) applyServicesContent(d); else loadServicesContent(); } },
                 'testimonials':{ el: '#testimonials', apply: () => { const d = _apiCache.testimonials; if (d) applyTestimonialsContent(d); else loadTestimonialsContent(); } },
                 'about':       { el: '#about',       apply: () => { const d = _apiCache.about; if (d) applyAboutContent(d); else loadAboutContent(); } }
@@ -6518,6 +7091,16 @@
                     else renderNoFilms();
                 } else renderNoFilms();
             } catch(e) { renderNoFilms(); }
+        }
+
+        function applyPreWeddingContent(data) {
+            try {
+                if (data.preWeddingShoot && data.preWeddingShoot.entries) {
+                    preWeddingData = data.preWeddingShoot.entries;
+                    if (preWeddingData.length > 0) { renderPreWeddingCarousel(); setupPreWeddingNavigation(); }
+                    else renderNoPreWedding();
+                } else renderNoPreWedding();
+            } catch(e) { renderNoPreWedding(); }
         }
 
         function applyServicesContent(data) {
