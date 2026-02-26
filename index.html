@@ -6456,6 +6456,8 @@
         let preWeddingData = [];
         let currentPreWeddingIndex = 0;
         let currentPreWeddingGalleryImages = [];
+        let preWeddingAutoSlideInterval = null;
+        const PRE_WEDDING_SLIDE_DELAY = 4000;
         
         async function loadPreWeddingContent() {
             if (_apiCache.preWeddingShoot) { applyPreWeddingContent(_apiCache.preWeddingShoot); return; }
@@ -6541,29 +6543,60 @@
             const nextBtn = document.getElementById('preweddingNextBtn');
             const prevBtnMobile = document.getElementById('preweddingPrevBtnMobile');
             const nextBtnMobile = document.getElementById('preweddingNextBtnMobile');
+            const carouselWrapper = document.querySelector('.prewedding-carousel-wrapper');
             
             const handlePrev = () => {
-                if (currentPreWeddingIndex > 0) {
-                    currentPreWeddingIndex--;
-                    renderCurrentPreWedding();
-                    updatePreWeddingNavButtons();
-                    updatePreWeddingIndicators();
-                }
+                currentPreWeddingIndex = (currentPreWeddingIndex - 1 + preWeddingData.length) % preWeddingData.length;
+                renderCurrentPreWedding();
+                updatePreWeddingNavButtons();
+                updatePreWeddingIndicators();
+                resetPreWeddingAutoSlide();
             };
             
             const handleNext = () => {
-                if (currentPreWeddingIndex < preWeddingData.length - 1) {
-                    currentPreWeddingIndex++;
-                    renderCurrentPreWedding();
-                    updatePreWeddingNavButtons();
-                    updatePreWeddingIndicators();
-                }
+                currentPreWeddingIndex = (currentPreWeddingIndex + 1) % preWeddingData.length;
+                renderCurrentPreWedding();
+                updatePreWeddingNavButtons();
+                updatePreWeddingIndicators();
+                resetPreWeddingAutoSlide();
             };
             
             if (prevBtn) prevBtn.addEventListener('click', handlePrev);
             if (nextBtn) nextBtn.addEventListener('click', handleNext);
             if (prevBtnMobile) prevBtnMobile.addEventListener('click', handlePrev);
             if (nextBtnMobile) nextBtnMobile.addEventListener('click', handleNext);
+
+            // Pause auto-slide on hover, resume on mouse leave
+            if (carouselWrapper) {
+                carouselWrapper.addEventListener('mouseenter', stopPreWeddingAutoSlide);
+                carouselWrapper.addEventListener('mouseleave', startPreWeddingAutoSlide);
+            }
+
+            // Start auto-slide
+            startPreWeddingAutoSlide();
+        }
+
+        function startPreWeddingAutoSlide() {
+            if (preWeddingData.length <= 1) return;
+            stopPreWeddingAutoSlide();
+            preWeddingAutoSlideInterval = setInterval(() => {
+                currentPreWeddingIndex = (currentPreWeddingIndex + 1) % preWeddingData.length;
+                renderCurrentPreWedding();
+                updatePreWeddingNavButtons();
+                updatePreWeddingIndicators();
+            }, PRE_WEDDING_SLIDE_DELAY);
+        }
+
+        function stopPreWeddingAutoSlide() {
+            if (preWeddingAutoSlideInterval) {
+                clearInterval(preWeddingAutoSlideInterval);
+                preWeddingAutoSlideInterval = null;
+            }
+        }
+
+        function resetPreWeddingAutoSlide() {
+            stopPreWeddingAutoSlide();
+            startPreWeddingAutoSlide();
         }
         
         function goToPreWedding(index) {
@@ -6572,6 +6605,7 @@
                 renderCurrentPreWedding();
                 updatePreWeddingNavButtons();
                 updatePreWeddingIndicators();
+                resetPreWeddingAutoSlide();
             }
         }
         
@@ -6582,25 +6616,23 @@
             const nextBtnMobile = document.getElementById('preweddingNextBtnMobile');
             const navControls = document.querySelector('.prewedding-nav-controls');
             
-            const isFirst = currentPreWeddingIndex === 0;
-            const isLast = currentPreWeddingIndex === preWeddingData.length - 1;
             const hideNav = preWeddingData.length <= 1;
             
             if (prevBtn) {
-                prevBtn.disabled = isFirst;
+                prevBtn.disabled = false;
                 prevBtn.style.display = hideNav ? 'none' : 'flex';
             }
             if (nextBtn) {
-                nextBtn.disabled = isLast;
+                nextBtn.disabled = false;
                 nextBtn.style.display = hideNav ? 'none' : 'flex';
             }
             if (prevBtnMobile) {
-                prevBtnMobile.disabled = isFirst;
-                prevBtnMobile.style.opacity = isFirst ? '0.4' : '1';
+                prevBtnMobile.disabled = false;
+                prevBtnMobile.style.opacity = '1';
             }
             if (nextBtnMobile) {
-                nextBtnMobile.disabled = isLast;
-                nextBtnMobile.style.opacity = isLast ? '0.4' : '1';
+                nextBtnMobile.disabled = false;
+                nextBtnMobile.style.opacity = '1';
             }
             if (navControls) {
                 navControls.style.display = hideNav ? 'none' : '';
@@ -6618,6 +6650,7 @@
             const shoot = preWeddingData[currentPreWeddingIndex];
             if (!shoot || !shoot.galleryImages || shoot.galleryImages.length === 0) return;
             
+            stopPreWeddingAutoSlide();
             const lightbox = document.getElementById('preweddingLightbox');
             const gallery = document.getElementById('preweddingLightboxGallery');
             const title = document.getElementById('preweddingLightboxTitle');
@@ -6644,6 +6677,7 @@
         function closePreWeddingLightbox() {
             document.getElementById('preweddingLightbox').classList.remove('active');
             document.body.style.overflow = '';
+            startPreWeddingAutoSlide();
         }
         
         function renderNoPreWedding() {
